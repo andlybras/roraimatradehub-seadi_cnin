@@ -85,18 +85,17 @@ body::before {
 
 /* Em static/css/style.css */
 /* SUBSTITUA a seção do slideshow por esta versão completa e final */
+/* Em: static/css/style.css */
+/* SUBSTITUA a seção do slideshow por esta versão completa e final */
 
 /* === SLIDESHOW DE INFORMAÇÕES (QUERO VENDER) === */
 .content-panel {
-    /* PROPRIEDADES CORRIGIDAS E REESTABELECIDAS */
-     background-color: rgba(20, 74, 93, 0.3); /* Fundo de vidro translúcido */
-    backdrop-filter: blur(10px);               /* Efeito de blur no fundo */
-    -webkit-backdrop-filter: blur(10px);       /* Compatibilidade Webkit */
-    border: 0.5px solid #E4F8FF;               /* Borda fina branca */
-    border-radius: 50px;                       /* Cantos arredondados */
-    /* FIM DAS PROPRIEDADES CORRIGIDAS */
-
-    padding: 0; /* O slideshow gerencia o próprio padding interno */
+    background-color: rgba(20, 74, 93, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid #E4F8FF;
+    border-radius: 50px;
+    padding: 0;
     display: flex;
     min-height: 450px;
     overflow: hidden;
@@ -104,95 +103,54 @@ body::before {
 
 #info-slideshow { width: 100%; display: flex; flex-direction: column; }
 .slides-container { position: relative; flex-grow: 1; padding: 40px; }
-.slide { 
-    position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; 
-    opacity: 0; transition: opacity 0.8s ease-in-out; pointer-events: none; 
+
+.slide {
+    position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px;
+    opacity: 0; transition: opacity 0.8s ease-in-out; pointer-events: none;
     overflow-y: auto; padding-right: 20px;
     display: flex; flex-direction: column; justify-content: center;
-    /* COR DO TEXTO AJUSTADA PARA MAIOR LEITURA */
-    color: #E4F8FF; /* Cor padrão clara, que se destaca no fundo de vidro */
+    color: #E4F8FF;
+    border-radius: 25px;
 }
-.slide.is-active { opacity: 1; pointer-events: auto; }
 
+.slide.is-active { opacity: 1; pointer-events: auto; }
 .slide::-webkit-scrollbar { width: 8px; }
 .slide::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 4px; }
 .slide::-webkit-scrollbar-thumb { background-color: rgba(228, 248, 255, 0.5); border-radius: 4px; }
 .slide::-webkit-scrollbar-thumb:hover { background-color: rgba(228, 248, 255, 0.8); }
 
 .slide h2 {
-    font-family: 'Bakbak One', cursive;
-    font-size: 2rem;
+    /* === AJUSTE DE TIPOGRAFIA DO TÍTULO === */
+    font-family: 'Montserrat', sans-serif; /* FONTE ALTERADA */
+    font-weight: 700; /* Peso "bold" para a Montserrat */
+    font-size: 1.75rem; /* Tamanho ligeiramente ajustado */
     margin-top: 0;
+    margin-bottom: 1.5rem; /* Mais espaço abaixo do título */
 }
 
-/* AJUSTE 2: Justifica o texto para melhor distribuição */
-.slide p {
+.slide p,
+.slide li {
+    /* === AJUSTE DE TIPOGRAFIA DO TEXTO === */
+    font-size: 1.1rem; /* FONTE AUMENTADA SUTILMENTE */
+    line-height: 1.6; /* Melhora o espaçamento entre linhas */
     text-align: justify;
-    line-height: 1.6;
 }
 
 .slide ul { list-style: none; padding-left: 0; margin-top: 1em; }
-.slide li { padding-left: 1.5em; position: relative; margin-bottom: 0.5em; line-height: 1.4; }
+.slide li { padding-left: 1.5em; position: relative; margin-bottom: 0.75em; }
 .slide li::before { content: '✔'; color: #E4F8FF; position: absolute; left: 0; }
 
-/* Navegação e Barra de Progresso */
-.slideshow-nav {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    padding: 20px 40px;
-    border-top: 0.5px solid rgba(228, 248, 255, 0.5);
-}
-
-.nav-item {
-    padding: 5px;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-}
-
-.nav-item:hover, .nav-item.is-active {
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.2); /* Fundo da barra */
-    overflow: hidden;
-}
-
-/* AJUSTE 1: Lógica da Barra de Progresso */
-.progress-fill {
-    width: 0; /* Começa vazia por padrão */
-    height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #ffbe0b, #fb5607, #ff006e, #8338ec, #3a86ff);
-    background-size: 400% 100%;
-}
-
-.nav-item.is-complete .progress-fill {
-    width: 100%; /* Barras completas ficam 100% preenchidas */
-    transition: none; /* Sem animação */
-    background: #E4F8FF; /* Cor sólida para barras completas */
-}
-
-.nav-item.is-active .progress-fill {
-    /* Só a barra ativa tem a animação de preenchimento e arco-íris */
-    animation: 
-        fill-progress 15s linear forwards,
-        rainbow-scroll 10s linear infinite;
-}
-
-.nav-item.is-paused .progress-fill {
-    animation-play-state: paused;
-}
-
+/* ... (O restante do código da navegação e progresso continua o mesmo) ... */
+.slideshow-nav { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 20px 40px; border-top: 0.5px solid rgba(228, 248, 255, 0.5); }
+.nav-item { padding: 5px; border-radius: 20px; cursor: pointer; background-color: rgba(0, 0, 0, 0.2); transition: background-color 0.3s; }
+.nav-item:hover, .nav-item.is-active { background-color: rgba(0, 0, 0, 0.4); }
+.progress-bar { width: 100%; height: 8px; border-radius: 4px; background-color: rgba(0, 0, 0, 0.2); overflow: hidden; }
+.progress-fill { width: 0; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #ffbe0b, #fb5607, #ff006e, #8338ec, #3a86ff); background-size: 400% 100%; }
+.nav-item.is-complete .progress-fill { width: 100%; transition: none; background: #E4F8FF; }
+.nav-item.is-active .progress-fill { animation: fill-progress 15s linear forwards, rainbow-scroll 10s linear infinite; }
+.nav-item.is-paused .progress-fill { animation-play-state: paused; }
 @keyframes fill-progress { from { width: 0%; } to { width: 100%; } }
 @keyframes rainbow-scroll { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-
 /* CARDS DE OPÇÃO DA PÁGINA INTERNA */
 .option-card { background-color: #E4F8FF; color: #144A5D; border-radius: 40px; padding: 25px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 15px; font-weight: 700; font-size: 1.1rem; text-align: center; border: 1px solid #144A5D; transition: all 0.3s ease; }
 .option-card:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
