@@ -1,35 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<h>
-    <meta charset="UTF-8">
+<head> <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Roraima Trade Hub{% endblock %}</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=Bakbak+One&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<>
-    <header class="main-header">
-        <nav class="main-nav">
-            <a href="#" aria-label="Acesso à página Home">
-                <img src="{% static 'images/icone_acesso_home.svg' %}" alt="Ícone para acesso a página Home">
-            </a>
-            <a href="#" aria-label="Acesso à conta do usuário">
-                <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="Ícone para acesso à conta do usuário">
-            </a>
-            <a href="#" aria-label="Acesso ao painel administrativo">
-                <img src="{% static 'images/icone_acesso_admin.svg' %}" alt="Ícone para acesso ao painel administrativo">
-            </a>
-        </nav>
-        <div class="logos">
-            <img src="{% static 'images/logotipo-seadi.png' %}" alt="Logo Secretaria de Estado da Agricultura, Desenvolvimento e Inovação">
-        </div>
-    </header>
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
-</body>
+<body> <div class="container">
+        <header class="main-header">
+            <nav class="main-nav">
+                <a href="#" aria-label="Acesso à página Home">
+                    <img src="{% static 'images/icone_acesso_home.svg' %}" alt="Ícone para acesso a página Home">
+                </a>
+                <a href="#" aria-label="Acesso à conta do usuário">
+                    <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="Ícone para acesso à conta do usuário">
+                </a>
+                <a href="#" aria-label="Acesso ao painel administrativo">
+                    <img src="{% static 'images/icone_acesso_admin.svg' %}" alt="Ícone para acesso ao painel administrativo">
+                </a>
+            </nav>
+            <div class="logos">
+                <img src="{% static 'images/logo-secretaria.png' %}" alt="Logo Secretaria de Estado da Agricultura, Desenvolvimento e Inovação">
+            </div>
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    </body>
 </html>
