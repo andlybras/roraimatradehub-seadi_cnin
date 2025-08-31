@@ -3,7 +3,7 @@
 body {
     /* !! IMPORTANTE: Coloque uma imagem sua na pasta static/images !! */
     /* E troque 'background.jpg' pelo nome do seu arquivo.        */
-    background-image: url('../images/background.jpg'); 
+    background-image: url('../images/bandeira_roraima.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Isso faz a imagem ficar parada ao rolar */
