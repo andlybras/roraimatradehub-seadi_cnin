@@ -1,4 +1,4 @@
-/* static/css/style.css (VERSÃO CORRETA E FINAL) */
+/* static/css/style.css (VERSÃO FINAL E CORRIGIDA) */
 
 /* === RESET BÁSICO E CONFIGURAÇÕES GLOBAIS === */
 body {
@@ -8,12 +8,11 @@ body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-    font-family: 'Bai Jamjuree', sans-serif; /* Fonte padrão */
+    font-family: 'Bai Jamjuree', sans-serif;
     color: #E4F8FF;
     position: relative;
     z-index: 1;
 }
-
 body::before {
     content: '';
     position: fixed;
@@ -21,19 +20,17 @@ body::before {
     background-color: rgba(65, 162, 197, 0.5); 
     z-index: -1;
 }
-
 .container {
     width: 90%;
-    max-width: 1280px; /* Largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o container */
+    max-width: 1280px;
+    margin: 0 auto;
     padding: 20px 0;
 }
 
-
-/* === HEADER === */
+/* === HEADER (EFEITO SCROLL RESTAURADO) === */
 .main-header {
-    position: sticky; /* Ou 'fixed' se 'sticky' não funcionar como esperado */
-    top: 0;
+    position: sticky;
+    top: 20px; /* Um pequeno espaço do topo da página */
     z-index: 1000;
     transition: all 0.4s ease;
     display: flex;
@@ -47,221 +44,54 @@ body::before {
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
 }
-
 .main-header.scrolled {
-    background-color: #144A5D; /* A cor azul do "Quero Vender" */
-    backdrop-filter: none; /* Remove o efeito de vidro */
+    background-color: #144A5D;
+    backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border-radius: 0 0 50px 50px;
     border-top-width: 0;
+    top: 0; /* Gruda no topo quando rolado */
 }
+.main-nav { display: flex; gap: 30px; }
+.main-nav img { width: 28px; height: 28px; transition: transform 0.2s ease-in-out; }
+.main-nav a:hover img { transform: scale(1.2); }
+.logos { display: flex; align-items: center; gap: 15px; }
+.logos img { height: 40px; } /* Altura da logo da SEADI: 40px */
 
-.main-nav {
-    display: flex;
-    gap: 30px;
-}
-
-.main-nav img {
-    width: 28px;
-    height: 28px;
-    transition: transform 0.2s ease-in-out;
-}
-
-.main-nav a:hover img {
-    transform: scale(1.2);
-}
-
-.logos {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logos img {
-    height: 40px;
-}
-
-/* === SEÇÃO HERO === */
-.hero {
-    display: flex;
-    align-items: center;
-    border: 0.5px solid #E4F8FF;
-    border-radius: 50px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.hero-image {
-    flex-shrink: 0;
-}
-
-.hero-image img {
-    display: block;
-    max-width: 400px;
-    transform: translateY(15px);
-}
-
-.hero-text {
-    padding: 20px 40px;
-    width: 100%;
-}
-
-.hero-text h1 {
-    font-family: 'Bakbak One', cursive;
-    font-size: 5rem;
-    line-height: 1;
-    margin: 0 0 10px 0;
-}
-
-.hero-text p {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-
-/* === GRADE DE NAVEGAÇÃO (VERSÃO CORRIGIDA) === */
-.navigation-grid {
-    display: grid;
-    /* A chave da solução: 4 colunas de larguras iguais. Isso criará uma grade 4x2. */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.grid-item {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 0.5px solid #E4F8FF;
-    border-radius: 40px;
-    padding: 20px;
-    text-decoration: none;
-    color: #E4F8FF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: background-color 0.3s, transform 0.3s;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    min-height: 150px; /* Garante uma altura mínima para todos */
-}
-
-.grid-item:hover {
-    background-color: rgba(255, 255, 255, 0.15); 
-    transform: translateY(-5px); 
-}
-
-/* Estilos específicos para os botões coloridos */
-#comprar {
-    grid-column: 1; /* ORDEM: Fique na primeira coluna */
-    grid-row: 1;    
-    background-color: #E4F8FF;
-    color: #144A5D; 
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: #144A5D;
-}
-
-#comprar:hover {
-    background-color: #c0e0eb;
-}
-
-#vender { 
-    grid-column: 1; /* ORDEM: Fique na primeira coluna */
-    grid-row: 2;    
-    background-color: #144A5D;
-    color: #E4F8FF; 
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-#vender:hover {
-    background-color: #0d2f3b;
-}
-
-
-/* === MÁGICA DA RESPONSIVIDADE (VERSÃO CORRIGIDA) === */
-
-/* Para telas menores (tablets) */
-@media (max-width: 1024px) {
-    .hero { flex-direction: column; text-align: center; }
-    .hero-image img { max-width: 300px; transform: none; }
-    .hero-text h1 { font-size: 4rem; }
-    .hero-text p { font-size: 1.5rem; }
-
-    /* Correção da grade para tablets */
-    .navigation-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas, formando uma grade 2x4 */
-    }
-}
-
-/* Para telas pequenas (celulares) */
-@media (max-width: 600px) {
-    .main-header { flex-direction: column; gap: 15px; }
-    .logos { order: -1; }
-    .hero-image img { display: none; }
-    .hero-text h1 { font-size: 2.5rem; }
-    .hero-text p { font-size: 1.2rem; }
-
-    /* Correção da grade para celulares */
-    .navigation-grid {
-        grid-template-columns: 1fr; /* 1 coluna, empilhando todos os 8 cards */
-    }
-}
-
-/* static/css/style.css */
-
-/* ... (código da responsividade) ... */
-
+/* === SEÇÕES PRINCIPAIS (HERO, GRADE, ETC) === */
+/* ... (Todo o seu código para .hero, .navigation-grid, .grid-item, etc. continua aqui, inalterado) ... */
+.hero { display: flex; align-items: center; border: 0.5px solid #E4F8FF; border-radius: 50px; overflow: hidden; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.hero-image { flex-shrink: 0; }
+.hero-image img { display: block; max-width: 400px; transform: translateY(15px); }
+.hero-text { padding: 20px 40px; width: 100%; }
+.hero-text h1 { font-family: 'Bakbak One', cursive; font-size: 5rem; line-height: 1; margin: 0 0 10px 0; }
+.hero-text p { font-size: 1.8rem; font-weight: 600; margin: 0; }
+.navigation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-item { background-color: rgba(255, 255, 255, 0.05); border: 0.5px solid #E4F8FF; border-radius: 40px; padding: 20px; text-decoration: none; color: #E4F8FF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; font-weight: 700; font-size: 1.1rem; transition: background-color 0.3s, transform 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); min-height: 150px; }
+.grid-item:hover { background-color: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }
+#comprar { grid-column: 1; grid-row: 1; background-color: #E4F8FF; color: #144A5D; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: #144A5D; }
+#comprar:hover { background-color: #c0e0eb; }
+#vender { grid-column: 1; grid-row: 2; background-color: #144A5D; color: #E4F8FF; backdrop-filter: none; -webkit-backdrop-filter: none; }
+#vender:hover { background-color: #0d2f3b; }
 
 /* === FOOTER === */
+.site-footer { margin-top: 40px; width: 100%; }
+.partners-section { padding: 20px 30px; margin-bottom: 20px; border-radius: 25px; text-align: center; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 0.5px solid #E4F8FF; }
+.partners-section h2 { margin-top: 0; margin-bottom: 15px; font-family: 'Bakbak One', cursive; font-weight: 400; }
+.main-footer-content { background-color: #144A5D; color: #E4F8FF; padding: 30px 0; text-align: center; }
+.main-footer-content p { margin: 5px 0; opacity: 0.8; }
+.main-footer-content strong { opacity: 1; }
 
-.site-footer {
-    /* Espaçamento para separar o rodapé do conteúdo principal */
-    margin-top: 40px;
-    width: 100%;
-}
+/* === CARROSSEL DE PARCEIROS (VERSÃO FINAL E CORRIGIDA) === */
+.scroller { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent); mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent); }
+.scroller-inner { display: flex; flex-wrap: nowrap; width: max-content; }
+.scroller[data-animated="true"] .scroller-inner { animation: scroll 60s linear infinite; }
+.scroller:hover .scroller-inner { animation-play-state: paused; }
+.partner-logo { display: flex; align-items: center; justify-content: center; padding: 1.5rem; margin: 0 2rem; border-radius: 1.25rem; /* 20px */ transition: all 0.3s ease; border: 1px solid transparent; /* Borda invisível para evitar pulos */ }
+.partner-logo:hover { background-color: #E4F8FF; border-color: #144A5D; transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+.partner-logo img { height: 80px; /* O DOBRO dos 40px da logo da SEADI */ max-width: 180px; object-fit: contain; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(calc(-100% / 2)); } }
 
-/* Parte 1: Seção de Parceiros (Efeito Vidro) */
-.partners-section {
-    padding: 30px;
-    margin-bottom: 20px; /* Espaço entre a seção de parceiros e o rodapé final */
-    border-radius: 25px;
-    text-align: center;
-
-    /* O MESMO EFEITO DE VIDRO QUE JÁ USAMOS */
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 0.5px solid #E4F8FF;
-}
-
-.partners-section h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-family: 'Bakbak One', cursive;
-    font-weight: 400; /* Bakbak One já é "bold" por padrão */
-}
-
-/* Parte 2: Rodapé Principal (Azul Escuro) */
-.main-footer-content {
-    background-color: #144A5D; /* A cor do card "Quero Vender" */
-    color: #E4F8FF;
-    padding: 30px 0;
-    text-align: center;
-}
-
-.main-footer-content p {
-    margin: 5px 0;
-    opacity: 0.8; /* Deixa o texto um pouco mais suave */
-}
-
-.main-footer-content strong {
-    opacity: 1; /* Garante que o nome do projeto se destaque */
-}
+/* === RESPONSIVIDADE (SEÇÕES PRESERVADAS) === */
+@media (max-width: 1024px) { .hero { flex-direction: column; text-align: center; } .hero-image img { max-width: 300px; transform: none; } .hero-text h1 { font-size: 4rem; } .hero-text p { font-size: 1.5rem; } .navigation-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .main-header { flex-direction: column; gap: 15px; } .logos { order: -1; } .hero-image img { display: none; } .hero-text h1 { font-size: 2.5rem; } .hero-text p { font-size: 1.2rem; } .navigation-grid { grid-template-columns: 1fr; } }

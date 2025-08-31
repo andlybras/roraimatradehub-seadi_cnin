@@ -7,7 +7,13 @@
 
 <section class="hero">
     <div class="hero-image">
-        <img src="{% static 'images/produtor-banana.png' %}" alt="Produtor de Roraima segurando um cacho de bananas">
+        {% for hero in hero_images %}
+            {% if forloop.first %}
+                <a href="{{ hero.link | default:'#' }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ hero.image.url }}" alt="Produtor de Roraima">
+                </a>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="hero-text">
         <h1>Roraima Trade Hub</h1>
