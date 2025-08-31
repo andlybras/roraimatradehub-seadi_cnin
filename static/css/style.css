@@ -202,3 +202,54 @@ body::before {
         grid-template-columns: 1fr; /* 1 coluna, empilhando todos os 8 cards */
     }
 }
+
+/* static/css/style.css */
+
+/* ... (código da responsividade) ... */
+
+
+/* === FOOTER === */
+
+.site-footer {
+    /* Espaçamento para separar o rodapé do conteúdo principal */
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* Parte 1: Seção de Parceiros (Efeito Vidro) */
+.partners-section {
+    padding: 30px;
+    margin-bottom: 20px; /* Espaço entre a seção de parceiros e o rodapé final */
+    border-radius: 25px;
+    text-align: center;
+
+    /* O MESMO EFEITO DE VIDRO QUE JÁ USAMOS */
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid #E4F8FF;
+}
+
+.partners-section h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: 'Bakbak One', cursive;
+    font-weight: 400; /* Bakbak One já é "bold" por padrão */
+}
+
+/* Parte 2: Rodapé Principal (Azul Escuro) */
+.main-footer-content {
+    background-color: #144A5D; /* A cor do card "Quero Vender" */
+    color: #E4F8FF;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.main-footer-content p {
+    margin: 5px 0;
+    opacity: 0.8; /* Deixa o texto um pouco mais suave */
+}
+
+.main-footer-content strong {
+    opacity: 1; /* Garante que o nome do projeto se destaque */
+}
