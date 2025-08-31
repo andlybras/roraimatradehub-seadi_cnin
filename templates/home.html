@@ -1,10 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Página Inicial | Roraima Trade Hub{% endblock %}
 
 {% block content %}
-    <div style="text-align: center; padding: 100px; color: white;">
-        <h1>Bem-vindo ao Roraima Trade Hub!</h1>
-        <p>A plataforma para conectar Roraima ao mundo.</p>
+
+<section class="hero">
+    <div class="hero-image">
+        <img src="{% static 'images/produtor-banana.png' %}" alt="Produtor de Roraima segurando um cacho de bananas">
     </div>
+    <div class="hero-text">
+        <h1>Roraima Trade Hub</h1>
+        <p>A vitrine do comércio de Roraima para o mundo</p>
+    </div>
+</section>
+
+<section class="navigation-grid">
+    <div class="grid-column-left">
+        <a href="#" class="grid-item primary-action large" id="comprar">
+            <img src="{% static 'images/icone-comprar' %}" alt="">
+            <span>Quero Comprar</span>
+        </a>
+        <a href="#" class="grid-item primary-action large" id="vender">
+            <img src="{% static 'images/icone-vender.svg' %}" alt="">
+            <span>Quero Vender</span>
+        </a>
+    </div>
+    <div class="grid-column-right">
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-inteligencia.svg' %}" alt="">
+            <span>Inteligência de Mercado</span>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-acordos.svg' %}" alt="">
+            <span>Acordos e Regulamentos</span>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-oportunidades.svg' %}" alt="">
+            <span>Oportunidades</span>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-aprenda.svg' %}" alt="">
+            <span>Aprenda Comex</span>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-destino.svg' %}" alt="">
+            <span>Destino Roraima</span>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="{% static 'images/icone-noticias.svg' %}" alt="">
+            <span>Notícias</span>
+        </a>
+    </div>
+</section>
+
 {% endblock %}
