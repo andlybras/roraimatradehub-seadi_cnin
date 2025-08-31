@@ -19,3 +19,7 @@ def home(request):
     
     # Finalmente, ele entrega o pacote para a vitrine (o template)
     return render(request, 'home.html', context)
+
+def quero_vender(request):
+    # Por enquanto, ela só precisa renderizar o novo template
+    return render(request, 'quero_vender.html')
