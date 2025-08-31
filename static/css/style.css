@@ -1,29 +1,184 @@
 /* static/css/style.css */
 
+/* === RESET BÁSICO E CONFIGURAÇÕES GLOBAIS === */
 body {
-    /* !! IMPORTANTE: Coloque uma imagem sua na pasta static/images !! */
-    /* E troque 'background.jpg' pelo nome do seu arquivo.        */
-    background-image: url('../images/bandeira_roraima.jpg'); 
+    background-image: url('../images/background.jpg'); 
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Isso faz a imagem ficar parada ao rolar */
-    
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
-    position: relative; /* Essencial para a camada de cor funcionar */
+    font-family: 'Bai Jamjuree', sans-serif; /* Fonte padrão */
+    color: #E4F8FF;
+    position: relative;
     z-index: 1;
 }
 
 body::before {
     content: '';
-    position: fixed; /* Usa fixed para cobrir a tela toda sempre */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    
-    /* Cor #41A2C5 com 50% de transparência */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: rgba(65, 162, 197, 0.5); 
-    
-    z-index: -1; /* Joga a camada para TRÁS do conteúdo do body */
+    z-index: -1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 20px 0;
+}
+
+
+/* === HEADER === */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border: 1px solid rgba(228, 248, 255, 0.5);
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.main-nav a:hover img {
+    transform: scale(1.2); /* Efeito ao passar o mouse */
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logos img {
+    height: 40px; /* Ajuste a altura conforme necessário */
+}
+
+/* === SEÇÃO HERO === */
+.hero {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(228, 248, 255, 0.5);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.hero-image {
+    flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+.hero-image img {
+    display: block;
+    max-width: 400px;
+    transform: translateY(15px); /* Efeito da imagem "saindo" pra baixo */
+}
+
+.hero-text {
+    padding: 20px 40px;
+}
+
+.hero-text h1 {
+    font-family: 'Bakbak One', cursive;
+    font-size: 5rem; /* Usamos 'rem' para melhor acessibilidade */
+    line-height: 1;
+    margin: 0 0 10px 0;
+}
+
+.hero-text p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* === GRADE DE NAVEGAÇÃO === */
+.navigation-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.grid-column-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-basis: 25%; /* Ocupa 25% da largura */
+}
+
+.grid-column-right {
+    flex-basis: 75%; /* Ocupa 75% da largura */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de larguras iguais */
+    gap: 20px;
+}
+
+.grid-item {
+    background: rgba(228, 248, 255, 0.1);
+    border: 1px solid rgba(228, 248, 255, 0.5);
+    border-radius: 40px;
+    padding: 20px;
+    text-decoration: none;
+    color: #E4F8FF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.grid-item:hover {
+    background-color: rgba(228, 248, 255, 0.3);
+    transform: translateY(-5px); /* Efeito de "levantar" o card */
+}
+
+.grid-item.large {
+    flex-grow: 1; /* Faz os botões da esquerda ocuparem todo o espaço */
+}
+
+.grid-item img {
+    height: 45px;
+}
+
+#comprar { background: #E4F8FF; color: #144A5D; }
+#vender { background: #144A5D; color: #E4F8FF; }
+
+
+/* === MÁGICA DA RESPONSIVIDADE === */
+
+/* Para telas menores (tablets) */
+@media (max-width: 1024px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-image img { max-width: 300px; transform: none; }
+    .navigation-grid { flex-direction: column; }
+    .grid-column-left { flex-direction: row; }
+    .grid-column-right { grid-template-columns: repeat(2, 1fr); } /* 2 colunas */
+    .hero-text h1 { font-size: 4rem; }
+    .hero-text p { font-size: 1.5rem; }
+}
+
+/* Para telas pequenas (celulares) */
+@media (max-width: 600px) {
+    .main-header { flex-direction: column; gap: 15px; }
+    .logos { order: -1; } /* Joga as logos para cima */
+    .hero-image img { display: none; } /* Esconde a imagem para economizar espaço */
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text p { font-size: 1.2rem; }
+    .grid-column-left { flex-direction: column; }
+    .grid-column-right { grid-template-columns: 1fr; } /* 1 coluna */
 }
