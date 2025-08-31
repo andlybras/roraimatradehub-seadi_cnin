@@ -1,4 +1,4 @@
-/* static/css/style.css (VERSÃO FINAL E CORRIGIDA) */
+/* static/css/style.css (VERSÃO FINAL, LIMPA E UNIFICADA) */
 
 /* === RESET BÁSICO E CONFIGURAÇÕES GLOBAIS === */
 body {
@@ -30,7 +30,7 @@ body::before {
 /* === HEADER (EFEITO SCROLL RESTAURADO) === */
 .main-header {
     position: sticky;
-    top: 20px; /* Um pequeno espaço do topo da página */
+    top: 20px;
     z-index: 1000;
     transition: all 0.4s ease;
     display: flex;
@@ -50,84 +50,25 @@ body::before {
     -webkit-backdrop-filter: none;
     border-radius: 0 0 50px 50px;
     border-top-width: 0;
-    top: 0; /* Gruda no topo quando rolado */
+    top: 0;
 }
 .main-nav { display: flex; gap: 30px; }
 .main-nav img { width: 28px; height: 28px; transition: transform 0.2s ease-in-out; }
 .main-nav a:hover img { transform: scale(1.2); }
 .logos { display: flex; align-items: center; gap: 15px; }
-.logos img { height: 40px; } /* Altura da logo da SEADI: 40px */
+.logos img { height: 40px; }
 
-/* Em: static/css/style.css */
-/* SUBSTITUA TODA A SEÇÃO HERO E SLIDESHOW PELA VERSÃO ABAIXO */
+/* === SEÇÃO HERO E SLIDESHOW === */
+.hero { display: flex; align-items: center; border: 0.5px solid #E4F8FF; border-radius: 50px; overflow: hidden; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.hero-image { position: relative; flex-shrink: 0; width: 350px; height: 250px; }
+.hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease-in-out; }
+.hero-slide.is-active { opacity: 1; }
+.hero-slide img { width: 100%; height: 100%; object-fit: contain; object-position: right bottom; display: block; }
+.hero-text { padding: 20px 40px; width: 100%; }
+.hero-text h1 { font-family: 'Bakbak One', cursive; font-size: 5rem; line-height: 1; margin: 0 0 10px 0; }
+.hero-text p { font-size: 1.8rem; font-weight: 600; margin: 0; }
 
-/* === SEÇÃO HERO E SLIDESHOW (VERSÃO FINAL E AJUSTADA) === */
-.hero {
-    display: flex;
-    align-items: center; /* Alinha o texto e a imagem verticalmente */
-    border: 0.5px solid #E4F8FF;
-    border-radius: 50px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    min-height: 250px; /* Definindo uma altura mínima para o container geral */
-}
-
-/* Container do Slideshow com altura e largura fixas */
-.hero-image {
-    position: relative;
-    flex-shrink: 0;
-    width: 350px; /* LARGURA AJUSTADA: Um pouco menor para compactar mais */
-    height: 250px; /* ALTURA AJUSTADA: Mais próxima do tamanho original */
-}
-
-/* Cada Slide Individual */
-.hero-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-.hero-slide.is-active {
-    opacity: 1;
-}
-/* Em: static/css/style.css */
-
-.hero-slide img {
-    width: 100%;
-    height: 100%;
-    
-    /* Mude para 'contain' para que a imagem inteira seja visível, sem cortes */
-    object-fit: contain; 
-    
-    /* Ajuste a posição se necessário. 'right center' ou 'center center' são boas opções */
-    object-position: right bottom; /* Ou 'center center' se preferir centralizado */
-    
-    display: block;
-}
-
-.hero-text {
-    padding: 20px 40px;
-    width: 100%;
-}
-.hero-text h1 {
-    font-family: 'Bakbak One', cursive;
-    font-size: 5rem;
-    line-height: 1;
-    margin: 0 0 10px 0;
-}
-.hero-text p {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-/* O restante das regras da grade permanecem as mesmas */
+/* === GRADE DE NAVEGAÇÃO === */
 .navigation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .grid-item { background-color: rgba(255, 255, 255, 0.05); border: 0.5px solid #E4F8FF; border-radius: 40px; padding: 20px; text-decoration: none; color: #E4F8FF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; font-weight: 700; font-size: 1.1rem; transition: background-color 0.3s, transform 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); min-height: 150px; }
 .grid-item:hover { background-color: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }
@@ -136,176 +77,85 @@ body::before {
 #vender { grid-column: 1; grid-row: 2; background-color: #144A5D; color: #E4F8FF; backdrop-filter: none; -webkit-backdrop-filter: none; }
 #vender:hover { background-color: #0d2f3b; }
 
-/* Em: static/css/style.css */
-/* ADICIONE ANTES DA SEÇÃO DO FOOTER */
-
 /* === ESTILOS DAS PÁGINAS INTERNAS (EX: QUERO VENDER) === */
-.page-layout {
-    display: flex;
-    gap: 20px;
-    /* A linha 'align-items: flex-start;' foi removida. */
-    /* O padrão 'stretch' vai alinhar as alturas automaticamente. */
-}
+.page-layout { display: flex; gap: 20px; }
+.main-column { flex-grow: 1; }
+.sidebar-column { flex-shrink: 0; width: 350px; display: flex; flex-direction: column; gap: 20px; justify-content: space-between; }
+.page-title { font-family: 'Bakbak One', cursive; font-size: 4rem; padding: 10px 30px; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 0.5px solid #E4F8FF; border-radius: 50px; display: inline-block; margin-bottom: 20px; }
 
-.main-column {
-    flex-grow: 1; /* Faz esta coluna ocupar o máximo de espaço possível */
-}
-
-.sidebar-column {
-    flex-shrink: 0;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    /* ADICIONE ESTA LINHA */
-    justify-content: space-between; /* Distribui os itens verticalmente */
-}
-
-.page-title {
-    font-family: 'Bakbak One', cursive;
-    font-size: 4rem;
-    padding: 10px 30px;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 0.5px solid #E4F8FF;
-    border-radius: 50px;
-    display: inline-block; /* Para que o fundo se ajuste ao tamanho do texto */
-    margin-bottom: 20px;
-}
-
+/* PAINEL DE CONTEÚDO E SLIDESHOW DE INFORMAÇÕES */
 .content-panel {
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 0.5px solid #E4F8FF;
     border-radius: 50px;
-    padding: 40px;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.option-card {
-    background-color: #E4F8FF;
-    color: #144A5D;
-    border-radius: 40px;
-    padding: 25px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-align: center;
-    border: 1px solid #144A5D;
-    transition: all 0.3s ease;
-}
-
-.option-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.option-card.dark {
-    background-color: #144A5D;
-    color: #E4F8FF;
-    border-color: #E4F8FF;
-}
-
-.option-card.transparent {
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    color: #E4F8FF;
-    border: 0.5px solid #E4F8FF;
+    padding: 0;
+    display: flex;
+    min-height: 450px;
+    overflow: hidden;
 }
+#info-slideshow { width: 100%; display: flex; flex-direction: column; }
+.slides-container { position: relative; flex-grow: 1; padding: 40px; }
+.slide { position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; opacity: 0; transition: opacity 0.8s ease-in-out; pointer-events: none; overflow-y: auto; padding-right: 20px; }
+.slide.is-active { opacity: 1; pointer-events: auto; }
+.slide::-webkit-scrollbar { width: 8px; }
+.slide::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 4px; }
+.slide::-webkit-scrollbar-thumb { background-color: rgba(228, 248, 255, 0.5); border-radius: 4px; }
+.slide::-webkit-scrollbar-thumb:hover { background-color: rgba(228, 248, 255, 0.8); }
+.slide h2 { font-family: 'Bakbak One', cursive; font-size: 2rem; margin-top: 0; }
+.slide ul { list-style: none; padding-left: 0; }
+.slide li { padding-left: 1.5em; position: relative; margin-bottom: 0.5em; line-height: 1.4; }
+.slide li::before { content: '✔'; color: #E4F8FF; position: absolute; left: 0; }
+.slideshow-nav { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 20px 40px; border-top: 0.5px solid rgba(228, 248, 255, 0.5); }
+.nav-item { padding: 5px; border-radius: 20px; cursor: pointer; background-color: rgba(0, 0, 0, 0.2); transition: background-color 0.3s; }
+.nav-item:hover, .nav-item.is-active { background-color: rgba(0, 0, 0, 0.4); }
+.progress-bar { width: 100%; height: 8px; border-radius: 4px; overflow: hidden; background: linear-gradient(90deg, #ffbe0b, #fb5607, #ff006e, #8338ec, #3a86ff); background-size: 400% 100%; animation: rainbow-scroll 10s linear infinite, fill-progress 15s linear forwards; }
+.nav-item.is-active .progress-bar { animation: rainbow-scroll 10s linear infinite, fill-progress 15s linear forwards; }
+.nav-item.is-paused .progress-bar { animation-play-state: paused; }
+@keyframes fill-progress { from { width: 0%; } to { width: 100%; } }
+@keyframes rainbow-scroll { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
-.option-card img {
-    height: 40px;
-}
+/* CARDS DE OPÇÃO DA PÁGINA INTERNA */
+.option-card { background-color: #E4F8FF; color: #144A5D; border-radius: 40px; padding: 25px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 15px; font-weight: 700; font-size: 1.1rem; text-align: center; border: 1px solid #144A5D; transition: all 0.3s ease; }
+.option-card:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+.option-card.dark { background-color: #144A5D; color: #E4F8FF; border-color: #E4F8FF; }
+.option-card.transparent { background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #E4F8FF; border: 0.5px solid #E4F8FF; }
+.option-card img { height: 40px; }
 
-/* === FOOTER === */
+/* === FOOTER E CARROSSEL DE PARCEIROS === */
 .site-footer { margin-top: 40px; width: 100%; }
 .partners-section { padding: 20px 30px; margin-bottom: 20px; border-radius: 25px; text-align: center; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 0.5px solid #E4F8FF; }
 .partners-section h2 { margin-top: 0; margin-bottom: 15px; font-family: 'Bakbak One', cursive; font-weight: 400; }
+.scroller { width: 100%; overflow: hidden; padding: 1.5rem 0; -webkit-mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent); mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent); }
+.scroller-inner { display: flex; flex-wrap: nowrap; width: max-content; }
+.scroller[data-animated="true"] .scroller-inner { animation: scroll 60s linear infinite; }
+.scroller:hover .scroller-inner { animation-play-state: paused; }
+.partner-logo { display: flex; align-items: center; justify-content: center; height: 150px; padding: 1rem; margin: 0 2rem; border-radius: 1.25rem; transition: all 0.3s ease; border: 1px solid transparent; }
+.partner-logo:hover { background-color: #E4F8FF; border-color: #144A5D; transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+.partner-logo img { height: 120px; max-width: 220px; object-fit: contain; transition: transform 0.3s ease; }
+.partner-logo:hover img { transform: scale(1.1); }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(calc(-100% / 2)); } }
 .main-footer-content { background-color: #144A5D; color: #E4F8FF; padding: 30px 0; text-align: center; }
 .main-footer-content p { margin: 5px 0; opacity: 0.8; }
 .main-footer-content strong { opacity: 1; }
 
-/* Em: static/css/style.css */
-/* SUBSTITUA TODA A SEÇÃO DO CARROSSEL ANTIGO POR ESTA */
-
-/* === CARROSSEL DE PARCEIROS (VERSÃO FINAL 3.0) === */
-
-.scroller {
-    width: 100%;
-    overflow: hidden;
-    
-    /* AJUSTE 1: Aumentamos o espaço vertical para o efeito de hover caber */
-    padding: 1.5rem 0; /* 32px de espaço acima e abaixo */
-
-    -webkit-mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent);
-    mask-image: linear-gradient(to right, transparent, black 128px, black calc(100% - 128px), transparent);
+/* === RESPONSIVIDADE === */
+@media (max-width: 1024px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-image { width: 100%; max-width: 300px; margin-bottom: 20px; height: 250px; }
+    .hero-text h1 { font-size: 4rem; }
+    .hero-text p { font-size: 1.5rem; }
+    .navigation-grid { grid-template-columns: repeat(2, 1fr); }
+    .page-layout { flex-direction: column; }
+    .sidebar-column { width: 100%; }
 }
-
-.scroller-inner {
-    display: flex;
-    flex-wrap: nowrap;
-    width: max-content;
-    animation: scroll 60s linear infinite;
+@media (max-width: 600px) {
+    .main-header { flex-direction: column; gap: 15px; }
+    .logos { order: -1; }
+    .hero-image { display: none; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text p { font-size: 1.2rem; }
+    .navigation-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 3rem; }
 }
-
-.scroller[data-animated="true"] .scroller-inner {
-    animation: scroll 60s linear infinite;
-}
-
-.scroller:hover .scroller-inner {
-    animation-play-state: paused;
-}
-
-.partner-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* AJUSTE 2: Aumentamos a altura do container do logo */
-    height: 150px; 
-    
-    padding: 1rem;
-    margin: 0 2rem;
-    border-radius: 1.25rem;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-
-.partner-logo:hover {
-    background-color: #E4F8FF;
-    border-color: #144A5D;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.partner-logo img {
-    /* AJUSTE 3: Aumentamos a altura da imagem em 50% */
-    height: 120px; 
-
-    max-width: 220px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.partner-logo:hover img {
-    transform: scale(1.1);
-}
-
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% / 2)); }
-}
-
-/* === RESPONSIVIDADE (SEÇÕES PRESERVADAS) === */
-@media (max-width: 1024px) { .hero { flex-direction: column; text-align: center; } .hero-image img { max-width: 300px; transform: none; } .hero-text h1 { font-size: 4rem; } .hero-text p { font-size: 1.5rem; } .navigation-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .main-header { flex-direction: column; gap: 15px; } .logos { order: -1; } .hero-image img { display: none; } .hero-text h1 { font-size: 2.5rem; } .hero-text p { font-size: 1.2rem; } .navigation-grid { grid-template-columns: 1fr; } }
