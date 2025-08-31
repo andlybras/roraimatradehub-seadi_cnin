@@ -35,7 +35,7 @@ body::before {
     position: sticky; /* Ou 'fixed' se 'sticky' não funcionar como esperado */
     top: 0;
     z-index: 1000;
-    transition: background-color 0.4s ease;
+    transition: all 0.4s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,6 +52,8 @@ body::before {
     background-color: #144A5D; /* A cor azul do "Quero Vender" */
     backdrop-filter: none; /* Remove o efeito de vidro */
     -webkit-backdrop-filter: none;
+    border-radius: 0 0 50px 50px;
+    border-top-width: 0;
 }
 
 .main-nav {
