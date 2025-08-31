@@ -1,7 +1,7 @@
-// Em: static/js/main.js (VERSÃO FINAL COM SLIDESHOW)
+// Em: static/js/main.js (VERSÃO FINAL, CORRIGIDA E UNIFICADA)
 
 document.addEventListener('DOMContentLoaded', function() {
-
+    
     // --- LÓGICA 1: EFEITO DE SCROLL DO HEADER (PRESERVADA) ---
     const header = document.querySelector('.main-header');
     if (header) {
@@ -20,10 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollerInner = scroller.querySelector('.scroller-inner');
         if (scrollerInner && scrollerInner.children.length > 0) {
             const scrollerContent = Array.from(scrollerInner.children);
-            let contentWidth = scrollerInner.offsetWidth;
-            let scrollerWidth = scroller.offsetWidth;
-            if (contentWidth < scrollerWidth) {
-                const clonesNeeded = Math.ceil(scrollerWidth / contentWidth);
+            let contentWidth = 0;
+            scrollerContent.forEach(item => {
+                const style = window.getComputedStyle(item);
+                contentWidth += item.offsetWidth + (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
+            });
+            
+            if (contentWidth < scroller.offsetWidth) {
+                const clonesNeeded = Math.ceil(scroller.offsetWidth / contentWidth);
                 for (let i = 0; i < clonesNeeded; i++) {
                     scrollerContent.forEach(item => {
                         const duplicatedItem = item.cloneNode(true);
@@ -32,35 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             }
+            
             const finalContent = Array.from(scrollerInner.children);
             finalContent.forEach(item => {
                 const duplicatedItem = item.cloneNode(true);
                 duplicatedItem.setAttribute('aria-hidden', true);
                 scrollerInner.appendChild(duplicatedItem);
             });
+
             scroller.setAttribute('data-animated', true);
         }
     }
-
-    // --- LÓGICA 3: SLIDESHOW DO HERO (ADICIONADA) ---
-    const slides = document.querySelectorAll('.hero-slide');
-
-    // Só inicia o slideshow se houver MAIS DE UMA imagem
-    if (slides.length > 1) {
-        let currentSlide = 0;
-
+    
+    // --- LÓGICA 3: SLIDESHOW DO HERO (PRESERVADA) ---
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    if (heroSlides.length > 1) {
+        let currentHeroSlide = 0;
         setInterval(function() {
-            // Torna o slide atual invisível
-            slides[currentSlide].classList.remove('is-active');
-            // Calcula qual é o próximo slide
-            currentSlide = (currentSlide + 1) % slides.length;
-            // Torna o novo slide visível
-            slides[currentSlide].classList.add('is-active');
-        }, 10000); // 10 segundos
+            heroSlides[currentHeroSlide].classList.remove('is-active');
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+            heroSlides[currentHeroSlide].classList.add('is-active');
+        }, 10000);
     }
-    const slideshow = document.querySelector('#info-slideshow');
 
-    // Só executa se o slideshow existir na página
+    // --- LÓGICA 4: SLIDESHOW DE INFORMAÇÕES (QUERO VENDER - VERSÃO CORRETA E FINAL) ---
+    const slideshow = document.querySelector('#info-slideshow');
     if (slideshow) {
         const slides = slideshow.querySelectorAll('.slide');
         const navItems = slideshow.querySelectorAll('.nav-item');
@@ -69,30 +69,32 @@ document.addEventListener('DOMContentLoaded', function() {
         let intervalId;
 
         function activateSlide(index) {
-            // Para o timer atual
             clearInterval(intervalId);
 
-            // Remove a classe 'is-active' de todos
+            // Controla as classes de estado da barra de progresso
+            navItems.forEach((nav, i) => {
+                nav.classList.remove('is-active', 'is-complete', 'is-paused');
+                if (i < index) {
+                    nav.classList.add('is-complete');
+                } else if (i === index) {
+                    nav.classList.add('is-active');
+                }
+            });
+            
+            // Ativa o slide de texto correspondente
             slides.forEach(s => s.classList.remove('is-active'));
-            navItems.forEach(n => n.classList.remove('is-active'));
-
-            // Adiciona a classe 'is-active' ao slide e navegação corretos
             slides[index].classList.add('is-active');
-            navItems[index].classList.add('is-active');
 
             currentSlideIndex = index;
-
-            // Reinicia o timer
             startSlideshow();
         }
 
         function startSlideshow() {
-            // Garante que qualquer timer antigo seja limpo
             clearInterval(intervalId);
-            // Remove a classe de pausa
-            navItems[currentSlideIndex].classList.remove('is-paused');
+            if (navItems[currentSlideIndex]) {
+                navItems[currentSlideIndex].classList.remove('is-paused');
+            }
 
-            // Cria um novo timer
             intervalId = setInterval(() => {
                 let nextSlideIndex = (currentSlideIndex + 1) % slides.length;
                 activateSlide(nextSlideIndex);
@@ -101,22 +103,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function pauseSlideshow() {
             clearInterval(intervalId);
-            // Adiciona a classe que pausa a animação CSS
-            navItems[currentSlideIndex].classList.add('is-paused');
+            if (navItems[currentSlideIndex]) {
+                navItems[currentSlideIndex].classList.add('is-paused');
+            }
         }
 
-        // Adiciona os event listeners
-        navItems.forEach((item, index) => {
+        // Adiciona os event listeners para navegação por clique
+        navItems.forEach(item => {
             item.addEventListener('click', () => {
+                const index = parseInt(item.dataset.index, 10);
                 activateSlide(index);
             });
         });
 
+        // Adiciona os event listeners para pausar/retomar com o mouse
         const slidesContainer = slideshow.querySelector('.slides-container');
         slidesContainer.addEventListener('mouseenter', pauseSlideshow);
         slidesContainer.addEventListener('mouseleave', startSlideshow);
-
-        // Inicia o slideshow
-        startSlideshow();
+        
+        // Inicia o slideshow na primeira posição
+        activateSlide(0);
     }
 });
