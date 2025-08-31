@@ -21,5 +21,15 @@ def home(request):
     return render(request, 'home.html', context)
 
 def quero_vender(request):
-    # Por enquanto, ela só precisa renderizar o novo template
-    return render(request, 'quero_vender.html')
+    # Buscamos os logos dos parceiros E os logos do header
+    partner_logos = PartnerLogo.objects.all().order_by('order')
+    header_logos = HeaderLogo.objects.all() # ADICIONE ESTA LINHA
+
+    # Criamos o pacote de entrega com AMBOS os logos
+    context = {
+        'partner_logos': partner_logos,
+        'header_logos': header_logos, # ADICIONE ESTA LINHA
+    }
+
+    # Entregamos o pacote para o template
+    return render(request, 'quero_vender.html', context)

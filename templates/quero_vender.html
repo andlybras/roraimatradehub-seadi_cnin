@@ -5,30 +5,31 @@
 
 {% block content %}
 
-<div class="page-layout">
-    
-    <div class="main-column">
-        <h1 class="page-title">Quero Vender</h1>
-        <div class="content-panel">
-            <p style="opacity: 0.5;">(Conteúdo futuro da página Quero Vender virá aqui)</p>
+    <h1 class="page-title">Quero Vender</h1>
+
+    <div class="page-layout">
+        
+        <div class="main-column">
+            <div class="content-panel">
+                <p style="opacity: 0.5;">(Conteúdo futuro da página Quero Vender virá aqui)</p>
+            </div>
         </div>
+
+        <aside class="sidebar-column">
+            <a href="#" class="option-card">
+                <img src="{% static 'images/icone_criar_conta_usuario.svg' %}" alt="">
+                <span>Quero criar meu Perfil Empresarial</span>
+            </a>
+            <a href="#" class="option-card dark">
+                <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="">
+                <span>Já possuo uma conta</span>
+            </a>
+            <a href="#" class="option-card transparent">
+                <img src="{% static 'images/icone-perguntas.svg' %}" alt="">
+                <span>Perguntas Frequentes</span>
+            </a>
+        </aside>
+
     </div>
-
-    <aside class="sidebar-column">
-        <a href="#" class="option-card">
-            <img src="{% static 'images/icone_criar_conta_usuario.svg' %}" alt="">
-            <span>Quero criar meu Perfil Empresarial</span>
-        </a>
-        <a href="#" class="option-card dark">
-            <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="">
-            <span>Já possuo uma conta</span>
-        </a>
-        <a href="#" class="option-card">
-            <img src="{% static 'images/icone-perguntas.svg' %}" alt="">
-            <span>Perguntas Frequentes</span>
-        </a>
-    </aside>
-
-</div>
 
 {% endblock %}
