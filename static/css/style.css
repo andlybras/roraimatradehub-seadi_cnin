@@ -88,43 +88,31 @@ body::before {
 
 /* === SLIDESHOW DE INFORMAÇÕES (QUERO VENDER) === */
 .content-panel {
-    padding: 0;
+    /* PROPRIEDADES CORRIGIDAS E REESTABELECIDAS */
+     background-color: rgba(20, 74, 93, 0.3); /* Fundo de vidro translúcido */
+    backdrop-filter: blur(10px);               /* Efeito de blur no fundo */
+    -webkit-backdrop-filter: blur(10px);       /* Compatibilidade Webkit */
+    border: 0.5px solid #E4F8FF;               /* Borda fina branca */
+    border-radius: 50px;                       /* Cantos arredondados */
+    /* FIM DAS PROPRIEDADES CORRIGIDAS */
+
+    padding: 0; /* O slideshow gerencia o próprio padding interno */
     display: flex;
     min-height: 450px;
     overflow: hidden;
 }
 
-#info-slideshow {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+#info-slideshow { width: 100%; display: flex; flex-direction: column; }
+.slides-container { position: relative; flex-grow: 1; padding: 40px; }
+.slide { 
+    position: absolute; top: 40px; left: 40px; right: 40px; bottom: 40px; 
+    opacity: 0; transition: opacity 0.8s ease-in-out; pointer-events: none; 
+    overflow-y: auto; padding-right: 20px;
+    display: flex; flex-direction: column; justify-content: center;
+    /* COR DO TEXTO AJUSTADA PARA MAIOR LEITURA */
+    color: #E4F8FF; /* Cor padrão clara, que se destaca no fundo de vidro */
 }
-
-.slides-container {
-    position: relative;
-    flex-grow: 1;
-    padding: 40px;
-}
-
-.slide {
-    position: absolute;
-    top: 40px; left: 40px; right: 40px; bottom: 40px;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-    pointer-events: none;
-    overflow-y: auto;
-    padding-right: 20px;
-    
-    /* AJUSTE 2: Centraliza o texto verticalmente */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.slide.is-active {
-    opacity: 1;
-    pointer-events: auto;
-}
+.slide.is-active { opacity: 1; pointer-events: auto; }
 
 .slide::-webkit-scrollbar { width: 8px; }
 .slide::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 4px; }
