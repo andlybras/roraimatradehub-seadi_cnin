@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Roraima Trade Hub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <p style="background-color: rgba(0,0,0,0.3); color: white; padding: 20px;">EU SOU O HEADER</p>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p style="background-color: rgba(0,0,0,0.3); color: white; padding: 20px;">EU SOU O FOOTER</p>
+    </footer>
+
+</body>
+</html>
