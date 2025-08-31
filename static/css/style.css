@@ -1,4 +1,4 @@
-/* static/css/style.css */
+/* static/css/style.css (VERSÃO CORRETA E FINAL) */
 
 /* === RESET BÁSICO E CONFIGURAÇÕES GLOBAIS === */
 body {
@@ -36,9 +36,12 @@ body::before {
     justify-content: space-between;
     align-items: center;
     padding: 15px 25px;
-    border: 1px solid rgba(228, 248, 255, 0.5);
+    border: 0.5px solid #E4F8FF; 
     border-radius: 50px;
     margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .main-nav {
@@ -53,7 +56,7 @@ body::before {
 }
 
 .main-nav a:hover img {
-    transform: scale(1.2); /* Efeito ao passar o mouse */
+    transform: scale(1.2);
 }
 
 .logos {
@@ -63,36 +66,40 @@ body::before {
 }
 
 .logos img {
-    height: 40px; /* Ajuste a altura conforme necessário */
+    height: 40px;
 }
 
 /* === SEÇÃO HERO === */
 .hero {
     display: flex;
     align-items: center;
-    border: 1px solid rgba(228, 248, 255, 0.5);
+    border: 0.5px solid #E4F8FF;
     border-radius: 50px;
     overflow: hidden;
     margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-image {
-    flex-shrink: 0; /* Impede que a imagem encolha */
+    flex-shrink: 0;
 }
 
 .hero-image img {
     display: block;
     max-width: 400px;
-    transform: translateY(15px); /* Efeito da imagem "saindo" pra baixo */
+    transform: translateY(15px);
 }
 
 .hero-text {
     padding: 20px 40px;
+    width: 100%;
 }
 
 .hero-text h1 {
     font-family: 'Bakbak One', cursive;
-    font-size: 5rem; /* Usamos 'rem' para melhor acessibilidade */
+    font-size: 5rem;
     line-height: 1;
     margin: 0 0 10px 0;
 }
@@ -104,29 +111,17 @@ body::before {
 }
 
 
-/* === GRADE DE NAVEGAÇÃO === */
+/* === GRADE DE NAVEGAÇÃO (VERSÃO CORRIGIDA) === */
 .navigation-grid {
-    display: flex;
-    gap: 20px;
-}
-
-.grid-column-left {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex-basis: 25%; /* Ocupa 25% da largura */
-}
-
-.grid-column-right {
-    flex-basis: 75%; /* Ocupa 75% da largura */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas de larguras iguais */
+    /* A chave da solução: 4 colunas de larguras iguais. Isso criará uma grade 4x2. */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
 .grid-item {
-    background: rgba(228, 248, 255, 0.1);
-    border: 1px solid rgba(228, 248, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid #E4F8FF;
     border-radius: 40px;
     padding: 20px;
     text-decoration: none;
@@ -140,45 +135,70 @@ body::before {
     font-weight: 700;
     font-size: 1.1rem;
     transition: background-color 0.3s, transform 0.3s;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-height: 150px; /* Garante uma altura mínima para todos */
 }
 
 .grid-item:hover {
-    background-color: rgba(228, 248, 255, 0.3);
-    transform: translateY(-5px); /* Efeito de "levantar" o card */
+    background-color: rgba(255, 255, 255, 0.15); 
+    transform: translateY(-5px); 
 }
 
-.grid-item.large {
-    flex-grow: 1; /* Faz os botões da esquerda ocuparem todo o espaço */
+/* Estilos específicos para os botões coloridos */
+#comprar {
+    grid-column: 1; /* ORDEM: Fique na primeira coluna */
+    grid-row: 1;    
+    background-color: #E4F8FF;
+    color: #144A5D; 
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: #144A5D;
 }
 
-.grid-item img {
-    height: 45px;
+#comprar:hover {
+    background-color: #c0e0eb;
 }
 
-#comprar { background: #E4F8FF; color: #144A5D; }
-#vender { background: #144A5D; color: #E4F8FF; }
+#vender { 
+    grid-column: 1; /* ORDEM: Fique na primeira coluna */
+    grid-row: 2;    
+    background-color: #144A5D;
+    color: #E4F8FF; 
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+#vender:hover {
+    background-color: #0d2f3b;
+}
 
 
-/* === MÁGICA DA RESPONSIVIDADE === */
+/* === MÁGICA DA RESPONSIVIDADE (VERSÃO CORRIGIDA) === */
 
 /* Para telas menores (tablets) */
 @media (max-width: 1024px) {
     .hero { flex-direction: column; text-align: center; }
     .hero-image img { max-width: 300px; transform: none; }
-    .navigation-grid { flex-direction: column; }
-    .grid-column-left { flex-direction: row; }
-    .grid-column-right { grid-template-columns: repeat(2, 1fr); } /* 2 colunas */
     .hero-text h1 { font-size: 4rem; }
     .hero-text p { font-size: 1.5rem; }
+
+    /* Correção da grade para tablets */
+    .navigation-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas, formando uma grade 2x4 */
+    }
 }
 
 /* Para telas pequenas (celulares) */
 @media (max-width: 600px) {
     .main-header { flex-direction: column; gap: 15px; }
-    .logos { order: -1; } /* Joga as logos para cima */
-    .hero-image img { display: none; } /* Esconde a imagem para economizar espaço */
+    .logos { order: -1; }
+    .hero-image img { display: none; }
     .hero-text h1 { font-size: 2.5rem; }
     .hero-text p { font-size: 1.2rem; }
-    .grid-column-left { flex-direction: column; }
-    .grid-column-right { grid-template-columns: 1fr; } /* 1 coluna */
+
+    /* Correção da grade para celulares */
+    .navigation-grid {
+        grid-template-columns: 1fr; /* 1 coluna, empilhando todos os 8 cards */
+    }
 }
