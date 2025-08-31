@@ -1,0 +1,29 @@
+/* static/css/style.css */
+
+body {
+    /* !! IMPORTANTE: Coloque uma imagem sua na pasta static/images !! */
+    /* E troque 'background.jpg' pelo nome do seu arquivo.        */
+    background-image: url('../images/background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Isso faz a imagem ficar parada ao rolar */
+    
+    margin: 0;
+    padding: 0;
+    position: relative; /* Essencial para a camada de cor funcionar */
+    z-index: 1;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Usa fixed para cobrir a tela toda sempre */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    /* Cor #41A2C5 com 50% de transparência */
+    background-color: rgba(65, 162, 197, 0.5); 
+    
+    z-index: -1; /* Joga a camada para TRÁS do conteúdo do body */
+}
