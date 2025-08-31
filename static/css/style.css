@@ -58,14 +58,67 @@ body::before {
 .logos { display: flex; align-items: center; gap: 15px; }
 .logos img { height: 40px; } /* Altura da logo da SEADI: 40px */
 
-/* === SEÇÕES PRINCIPAIS (HERO, GRADE, ETC) === */
-/* ... (Todo o seu código para .hero, .navigation-grid, .grid-item, etc. continua aqui, inalterado) ... */
-.hero { display: flex; align-items: center; border: 0.5px solid #E4F8FF; border-radius: 50px; overflow: hidden; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.hero-image { flex-shrink: 0; }
-.hero-image img { display: block; max-width: 400px; transform: translateY(15px); }
-.hero-text { padding: 20px 40px; width: 100%; }
-.hero-text h1 { font-family: 'Bakbak One', cursive; font-size: 5rem; line-height: 1; margin: 0 0 10px 0; }
-.hero-text p { font-size: 1.8rem; font-weight: 600; margin: 0; }
+/* Em: static/css/style.css */
+/* SUBSTITUA ESTA SEÇÃO INTEIRA */
+
+/* === SEÇÃO HERO E SLIDESHOW (VERSÃO FINAL) === */
+.hero {
+    display: flex;
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    border: 0.5px solid #E4F8FF;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Container do Slideshow com altura e largura fixas */
+.hero-image {
+    position: relative; /* Essencial para empilhar os slides */
+    flex-shrink: 0;
+    width: 400px;
+    height: 300px; /* ALTURA FIXA: A chave para o layout não quebrar */
+}
+
+/* Cada Slide Individual */
+.hero-slide {
+    position: absolute; /* Coloca todos os slides no mesmo lugar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa 100% dos 300px do container pai */
+    opacity: 0; /* Por padrão, todos são invisíveis */
+    transition: opacity 1.5s ease-in-out; /* O efeito de FADE! */
+}
+.hero-slide.is-active {
+    opacity: 1; /* O slide ativo fica visível */
+}
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer, cortando o excesso */
+    display: block;
+}
+
+.hero-text {
+    padding: 20px 40px;
+    width: 100%;
+}
+.hero-text h1 {
+    font-family: 'Bakbak One', cursive;
+    font-size: 5rem;
+    line-height: 1;
+    margin: 0 0 10px 0;
+}
+.hero-text p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* O restante das regras da grade permanecem as mesmas */
 .navigation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .grid-item { background-color: rgba(255, 255, 255, 0.05); border: 0.5px solid #E4F8FF; border-radius: 40px; padding: 20px; text-decoration: none; color: #E4F8FF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; font-weight: 700; font-size: 1.1rem; transition: background-color 0.3s, transform 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); min-height: 150px; }
 .grid-item:hover { background-color: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }

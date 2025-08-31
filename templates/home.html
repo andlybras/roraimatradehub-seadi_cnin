@@ -8,11 +8,11 @@
 <section class="hero">
     <div class="hero-image">
         {% for hero in hero_images %}
-            {% if forloop.first %}
-                <a href="{{ hero.link | default:'#' }}" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ hero.image.url }}" alt="Produtor de Roraima">
+            <div class="hero-slide {% if forloop.first %}is-active{% endif %}">
+                <a href="{{ hero.link|default:'#' }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ hero.image.url }}" alt="Imagem de destaque do Roraima Trade Hub">
                 </a>
-            {% endif %}
+            </div>
         {% endfor %}
     </div>
     <div class="hero-text">

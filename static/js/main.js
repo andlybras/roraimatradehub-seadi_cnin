@@ -1,8 +1,8 @@
-// static/js/main.js (VERSÃO FINAL E CORRIGIDA)
+// Em: static/js/main.js (VERSÃO FINAL COM SLIDESHOW)
 
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // --- LÓGICA DO HEADER SCROLL (RESTAURADA E GARANTIDA) ---
+
+    // --- LÓGICA 1: EFEITO DE SCROLL DO HEADER (PRESERVADA) ---
     const header = document.querySelector('.main-header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -14,16 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA DO CARROSSEL INFINITO (A PROVA DE FALHAS) ---
+    // --- LÓGICA 2: CARROSSEL DE PARCEIROS (PRESERVADA) ---
     const scroller = document.querySelector('.scroller');
     if (scroller) {
         const scrollerInner = scroller.querySelector('.scroller-inner');
-        
         if (scrollerInner && scrollerInner.children.length > 0) {
             const scrollerContent = Array.from(scrollerInner.children);
-            
-            // INTELIGÊNCIA ESPECIAL: Se o conteúdo for menor que a tela, duplique até preencher
-            // Isso garante o efeito de continuidade mesmo com 1 ou 2 logos.
             let contentWidth = scrollerInner.offsetWidth;
             let scrollerWidth = scroller.offsetWidth;
             if (contentWidth < scrollerWidth) {
@@ -36,17 +32,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             }
-            
-            // DUPLICAÇÃO FINAL: Agora, duplica todo o conteúdo (já preenchido) mais uma vez para o loop da animação
             const finalContent = Array.from(scrollerInner.children);
             finalContent.forEach(item => {
                 const duplicatedItem = item.cloneNode(true);
                 duplicatedItem.setAttribute('aria-hidden', true);
                 scrollerInner.appendChild(duplicatedItem);
             });
-
-            // Ativa a animação no CSS
             scroller.setAttribute('data-animated', true);
         }
+    }
+
+    // --- LÓGICA 3: SLIDESHOW DO HERO (ADICIONADA) ---
+    const slides = document.querySelectorAll('.hero-slide');
+
+    // Só inicia o slideshow se houver MAIS DE UMA imagem
+    if (slides.length > 1) {
+        let currentSlide = 0;
+
+        setInterval(function() {
+            // Torna o slide atual invisível
+            slides[currentSlide].classList.remove('is-active');
+            // Calcula qual é o próximo slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            // Torna o novo slide visível
+            slides[currentSlide].classList.add('is-active');
+        }, 10000); // 10 segundos
     }
 });
