@@ -59,9 +59,9 @@ body::before {
 .logos img { height: 40px; } /* Altura da logo da SEADI: 40px */
 
 /* Em: static/css/style.css */
-/* SUBSTITUA ESTA SEÇÃO INTEIRA */
+/* SUBSTITUA TODA A SEÇÃO HERO E SLIDESHOW PELA VERSÃO ABAIXO */
 
-/* === SEÇÃO HERO E SLIDESHOW (VERSÃO FINAL) === */
+/* === SEÇÃO HERO E SLIDESHOW (VERSÃO FINAL E AJUSTADA) === */
 .hero {
     display: flex;
     align-items: center; /* Alinha o texto e a imagem verticalmente */
@@ -72,33 +72,42 @@ body::before {
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    min-height: 250px; /* Definindo uma altura mínima para o container geral */
 }
 
 /* Container do Slideshow com altura e largura fixas */
 .hero-image {
-    position: relative; /* Essencial para empilhar os slides */
+    position: relative;
     flex-shrink: 0;
-    width: 400px;
-    height: 300px; /* ALTURA FIXA: A chave para o layout não quebrar */
+    width: 350px; /* LARGURA AJUSTADA: Um pouco menor para compactar mais */
+    height: 250px; /* ALTURA AJUSTADA: Mais próxima do tamanho original */
 }
 
 /* Cada Slide Individual */
 .hero-slide {
-    position: absolute; /* Coloca todos os slides no mesmo lugar */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Ocupa 100% dos 300px do container pai */
-    opacity: 0; /* Por padrão, todos são invisíveis */
-    transition: opacity 1.5s ease-in-out; /* O efeito de FADE! */
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 .hero-slide.is-active {
-    opacity: 1; /* O slide ativo fica visível */
+    opacity: 1;
 }
+/* Em: static/css/style.css */
+
 .hero-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer, cortando o excesso */
+    
+    /* Mude para 'contain' para que a imagem inteira seja visível, sem cortes */
+    object-fit: contain; 
+    
+    /* Ajuste a posição se necessário. 'right center' ou 'center center' são boas opções */
+    object-position: right bottom; /* Ou 'center center' se preferir centralizado */
+    
     display: block;
 }
 
