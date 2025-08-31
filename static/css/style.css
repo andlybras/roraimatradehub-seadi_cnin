@@ -136,6 +136,86 @@ body::before {
 #vender { grid-column: 1; grid-row: 2; background-color: #144A5D; color: #E4F8FF; backdrop-filter: none; -webkit-backdrop-filter: none; }
 #vender:hover { background-color: #0d2f3b; }
 
+/* Em: static/css/style.css */
+/* ADICIONE ANTES DA SEÇÃO DO FOOTER */
+
+/* === ESTILOS DAS PÁGINAS INTERNAS (EX: QUERO VENDER) === */
+.page-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.main-column {
+    flex-grow: 1; /* Faz esta coluna ocupar o máximo de espaço possível */
+}
+
+.sidebar-column {
+    flex-shrink: 0; /* Impede que esta coluna encolha */
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page-title {
+    font-family: 'Bakbak One', cursive;
+    font-size: 4rem;
+    padding: 10px 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid #E4F8FF;
+    border-radius: 50px;
+    display: inline-block; /* Para que o fundo se ajuste ao tamanho do texto */
+    margin-bottom: 20px;
+}
+
+.content-panel {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid #E4F8FF;
+    border-radius: 50px;
+    padding: 40px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-card {
+    background-color: #E4F8FF;
+    color: #144A5D;
+    border-radius: 40px;
+    padding: 25px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    border: 1px solid #144A5D;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.option-card.dark {
+    background-color: #144A5D;
+    color: #E4F8FF;
+    border-color: #E4F8FF;
+}
+
+.option-card img {
+    height: 40px;
+}
+
 /* === FOOTER === */
 .site-footer { margin-top: 40px; width: 100%; }
 .partners-section { padding: 20px 30px; margin-bottom: 20px; border-radius: 25px; text-align: center; background-color: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 0.5px solid #E4F8FF; }
