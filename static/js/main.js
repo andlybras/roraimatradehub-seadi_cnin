@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
     const header = document.querySelector('.main-header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -16,15 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
             addAnimation(scroller);
         });
     }
-
     function addAnimation(scroller) {
         const scrollerInner = scroller.querySelector(".scroller-inner");
         const scrollerContent = Array.from(scrollerInner.children);
+
         let contentWidth = 0;
         scrollerContent.forEach(item => {
             const style = window.getComputedStyle(item);
             contentWidth += item.offsetWidth + (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
         });
+
         if (contentWidth < scroller.offsetWidth) {
             const clonesNeeded = Math.ceil(scroller.offsetWidth / contentWidth);
             for (let i = 0; i < clonesNeeded; i++) {
@@ -72,20 +73,102 @@ document.addEventListener('DOMContentLoaded', function() {
             { regex: /[a-z]/, text: "Pelo menos uma letra minúscula" },
             { regex: /[0-9]/, text: "Pelo menos um número" },
         ];
+
         const rulesContainer = passwordFeedback.querySelector('.validation-rules');
-        if (rulesContainer) { /* ... código para popular as regras de senha ... */ }
-        const validateEmailFormat = () => { /* ... código de validação ... */ };
-        const validateEmailConfirmation = () => { /* ... código de validação ... */ };
-        const validatePasswordStrength = () => { /* ... código de validação ... */ };
-        const validatePasswordConfirmation = () => { /* ... código de validação ... */ };
-        function checkRegistrationFormValidity() { /* ... código de validação ... */ }
+        if (rulesContainer) {
+            rulesContainer.innerHTML = '';
+            passwordRules.forEach((rule, index) => {
+                const ruleDiv = document.createElement('div');
+                ruleDiv.id = `rule-${index}`;
+                ruleDiv.classList.add('invalid');
+                ruleDiv.innerHTML = `<span class="validation-icon">${iconError}</span><span>${rule.text}</span>`;
+                rulesContainer.appendChild(ruleDiv);
+            });
+        }
+        
+        const validateEmailFormat = () => {
+            if (!email) return false;
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            email.classList.toggle('valid', isValid && email.value.length > 0);
+            email.classList.toggle('invalid', !isValid && email.value.length > 0);
+            if(emailError) emailError.textContent = (!isValid && email.value.length > 0) ? emailError.dataset.errorMessage : '';
+            return isValid;
+        };
+
+        const validateEmailConfirmation = () => {
+            if (!email || !email2) return false;
+            const isValid = email.value === email2.value;
+            email2.classList.toggle('valid', isValid && email2.value.length > 0);
+            email2.classList.toggle('invalid', !isValid && email2.value.length > 0);
+            if(email2Error) email2Error.textContent = (!isValid && email2.value.length > 0) ? email2Error.dataset.errorMessage : '';
+            return isValid;
+        };
+
+        const validatePasswordStrength = () => {
+            if (!password) return false;
+            let allValid = true;
+            passwordRules.forEach((rule, index) => {
+                const ruleDiv = document.getElementById(`rule-${index}`);
+                if (!ruleDiv) return;
+                const iconSpan = ruleDiv.querySelector('.validation-icon');
+                if (rule.regex.test(password.value)) {
+                    ruleDiv.classList.add('valid');
+                    ruleDiv.classList.remove('invalid');
+                    iconSpan.innerHTML = iconSuccess;
+                } else {
+                    ruleDiv.classList.remove('valid');
+                    ruleDiv.classList.add('invalid');
+                    iconSpan.innerHTML = iconError;
+                    allValid = false;
+                }
+            });
+            password.classList.toggle('valid', allValid);
+            password.classList.toggle('invalid', !allValid && password.value.length > 0);
+            return allValid;
+        };
+        
+        const validatePasswordConfirmation = () => {
+            if (!password || !password2) return false;
+            const isValid = password.value === password2.value;
+            password2.classList.toggle('valid', isValid && password2.value.length > 0);
+            password2.classList.toggle('invalid', !isValid && password2.value.length > 0);
+            if(password2Error) password2Error.textContent = (!isValid && password2.value.length > 0) ? password2Error.dataset.errorMessage : '';
+            return isValid;
+        };
+        
+        function checkRegistrationFormValidity() {
+            const isEmailValid = email.classList.contains('valid');
+            const isEmail2Valid = email2.classList.contains('valid');
+            const isPasswordValid = password.classList.contains('valid');
+            const isPassword2Valid = password2.classList.contains('valid');
+
+            if (submitButton) {
+                submitButton.disabled = !(isEmailValid && isEmail2Valid && isPasswordValid && isPassword2Valid);
+            }
+        }
+        
         if (emailError) emailError.dataset.errorMessage = "Formato de e-mail inválido.";
         if (email2Error) email2Error.dataset.errorMessage = "Os e-mails não são iguais.";
         if (password2Error) password2Error.dataset.errorMessage = "As senhas não são iguais.";
-        email.addEventListener('input', () => { /* ... */ });
-        email2.addEventListener('input', () => { /* ... */ });
-        password.addEventListener('input', () => { /* ... */ });
-        password2.addEventListener('input', () => { /* ... */ });
+
+        email.addEventListener('input', () => {
+            validateEmailFormat();
+            validateEmailConfirmation();
+            checkRegistrationFormValidity();
+        });
+        email2.addEventListener('input', () => {
+            validateEmailConfirmation();
+            checkRegistrationFormValidity();
+        });
+        password.addEventListener('input', () => {
+            validatePasswordStrength();
+            validatePasswordConfirmation();
+            checkRegistrationFormValidity();
+        });
+        password2.addEventListener('input', () => {
+            validatePasswordConfirmation();
+            checkRegistrationFormValidity();
+        });
         checkRegistrationFormValidity();
     }
     const loginForm = document.getElementById('loginForm');
@@ -100,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 usernameInput.classList.remove('filled');
             }
-
             if (passwordInput.value.length > 0) {
                 passwordInput.classList.add('filled');
             } else {
@@ -109,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isFormValid = usernameInput.value.length > 0 && passwordInput.value.length > 0;
             loginButton.disabled = !isFormValid;
         }
+
         usernameInput.addEventListener('input', checkLoginForm);
         passwordInput.addEventListener('input', checkLoginForm);
         checkLoginForm();
