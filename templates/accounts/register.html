@@ -29,26 +29,28 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div style="color: #ff9999; text-align: left; font-size: 0.9rem; margin-top: 5px;">{{ form.user_type.errors }}</div>
+                <div class="backend-error">{{ form.user_type.errors }}</div>
             </div>
 
             <div class="form-group">
                 <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                 {{ form.username }}
-                <div style="color: #ff9999; text-align: left; font-size: 0.9rem; margin-top: 5px;">{{ form.username.errors }}</div>
+                <div class="backend-error">{{ form.username.errors }}</div>
             </div>
 
             <div class="form-group">
                 <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                 {{ form.email }}
                 <small class="form-help-text">{{ form.email.help_text }}</small>
-                <div style="color: #ff9999; text-align: left; font-size: 0.9rem; margin-top: 5px;">{{ form.email.errors }}</div>
+                <div class="validation-message" id="email-error"></div>
+                <div class="backend-error">{{ form.email.errors }}</div>
             </div>
 
             <div class="form-group">
                 <label for="{{ form.email2.id_for_label }}">{{ form.email2.label }}</label>
                 {{ form.email2 }}
-                <div style="color: #ff9999; text-align: left; font-size: 0.9rem; margin-top: 5px;">{{ form.email2.errors }}</div>
+                <div class="validation-message" id="email2-error"></div>
+                <div class="backend-error">{{ form.email2.errors }}</div>
             </div>
 
             <div class="form-group">
@@ -65,7 +67,7 @@
                 <div class="validation-message" id="password2-error"></div>
             </div>
             
-            <button type="submit" id="submitButton" class="grid-item">
+            <button type="submit" id="submitButton" class="grid-item" disabled>
                 Criar meu Perfil
             </button>
         </form>
