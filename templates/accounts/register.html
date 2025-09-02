@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crie sua Conta | Roraima Trade Hub{% endblock %}
+
+{% block content %}
+<div class="page-layout">
+    <div class="main-column">
+        <h1 class="page-title">Crie sua Conta</h1>
+        <div class="content-panel" style="padding: 40px; display: block;">
+            
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">
+                Junte-se à maior plataforma de comércio de Roraima.
+            </p>
+
+            <form method="post" style="max-width: 500px; margin: 0 auto;">
+                {% csrf_token %}
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    {{ form.as_p }}
+                </div>
+
+                <button type="submit" class="grid-item" style="width: 100%; margin-top: 30px; border: none; cursor: pointer;">
+                    Criar minha conta
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <aside class="sidebar-column">
+        <a href="#" class="option-card dark">
+            <img src="{% static 'images/icone_acesso_conta_usuario.svg'%}" alt="">
+            <span>Já possuo uma conta</span>
+        </a>
+        <a href="#" class="option-card transparent">
+            <img src="{% static 'images/icone-perguntas.svg' %}" alt="">
+            <span>Perguntas Frequentes</span>
+        </a>
+    </aside>
+</div>
+{% endblock %}
