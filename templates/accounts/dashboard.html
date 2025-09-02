@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Meu Painel | Roraima Trade Hub{% endblock %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="registration-panel" style="text-align: center;">
+        <h1 class="page-title" style="margin-bottom: 30px;">Meu Painel</h1>
+
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">
+            Olá, <strong>{{ user.username }}</strong>! Bem-vindo(a) de volta.
+        </p>
+
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 0 auto; text-decoration: none; border: none; cursor: pointer; font-family: inherit; font-size: 1.1rem;">
+                Sair (Logout)
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

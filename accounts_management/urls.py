@@ -3,7 +3,8 @@
 from django.urls import path
 # Importamos as views de autenticação prontas do Django
 from django.contrib.auth import views as auth_views
-from .views import RegisterView
+from .views import RegisterView, dashboard
+
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -16,4 +17,5 @@ urlpatterns = [
     
     # URL de Logout
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('dashboard/', dashboard, name='dashboard'),
 ]

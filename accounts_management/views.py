@@ -1,8 +1,9 @@
-# accounts_management/views.py
-
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login
+# Importação para proteger a view
+from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 from site_setup.models import HeaderLogo, PartnerLogo
 
@@ -36,3 +37,14 @@ class RegisterView(CreateView):
         
         # Continua com o comportamento normal, que é recarregar a página.
         return super().form_invalid(form)
+    
+@login_required
+def dashboard(request):
+    """
+    Exibe o painel do usuário. Apenas para usuários logados.
+    """
+    context = {
+        'header_logos': HeaderLogo.objects.all(),
+        'partner_logos': PartnerLogo.objects.all().order_by('order'),
+    }
+    return render(request, 'accounts/dashboard.html', context)
