@@ -1,19 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Quero Vender | Roraima Trade Hub{% endblock %}
-
 {% block content %}
-
     <h1 class="page-title">Quero Vender</h1>
-
     <div class="page-layout">
-        
         <div class="main-column">
             <div class="content-panel">
             </div>
         </div>
-
         <aside class="sidebar-column">
             <a href="{% url 'register' %}" class="option-card">
                 <img src="{% static 'images/icone_criar_conta_usuario.svg' %}" alt="">
@@ -28,7 +22,5 @@
                 <span>Perguntas Frequentes</span>
             </a>
         </aside>
-
     </div>
-
 {% endblock %}

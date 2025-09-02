@@ -29,8 +29,6 @@ body::before {
     padding: 20px 0;
 }
 
-/* --- */
-
 .main-header {
     position: sticky;
     top: 20px;
@@ -81,8 +79,6 @@ body::before {
 .logos img {
     height: 40px;
 }
-
-/* --- */
 
 .hero {
     display: flex;
@@ -143,8 +139,6 @@ body::before {
     margin: 0;
 }
 
-/* --- */
-
 .navigation-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -204,8 +198,6 @@ body::before {
     background-color: #0d2f3b;
 }
 
-/* --- */
-
 .page-layout {
     display: flex;
     gap: 20px;
@@ -236,8 +228,6 @@ body::before {
     display: inline-block;
     margin-bottom: 20px;
 }
-
-/* --- */
 
 .content-panel {
     background-color: rgba(20, 74, 93, 0.3);
@@ -447,8 +437,6 @@ body::before {
     height: 40px;
 }
 
-/* --- */
-
 .site-footer {
     margin-top: 40px;
     width: 100%;
@@ -549,8 +537,6 @@ body::before {
     opacity: 1;
 }
 
-/* --- */
-
 @media (max-width: 1024px) {
     .hero {
         flex-direction: column;
@@ -604,14 +590,11 @@ body::before {
     }
 }
 
-/* static/css/style.css */
-
-/* Centralização do Container de Registro */
 .registration-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 200px); /* Ajuste a altura conforme necessário */
+    min-height: calc(100vh - 200px);
     padding: 40px 0;
 }
 
@@ -627,7 +610,6 @@ body::before {
     text-align: center;
 }
 
-/* Estilo dos Grupos de Formulário */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -639,19 +621,18 @@ body::before {
     font-weight: 600;
 }
 
-/* Estilo dos Inputs de Texto/Email/Senha */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
     width: 100%;
     padding: 12px 20px;
-    background-color: rgba(20, 74, 93, 0.5); /* Cor base */
+    background-color: rgba(20, 74, 93, 0.5);
     border: 1px solid #E4F8FF;
     border-radius: 25px;
     color: #E4F8FF;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho */
+    box-sizing: border-box;
 }
 
 .form-group input::placeholder {
@@ -660,19 +641,18 @@ body::before {
 
 .form-group input:focus,
 .form-group input:not(:placeholder-shown) {
-    background-color: rgba(228, 248, 255, 0.9); /* Tom de branco ao focar/preencher */
+    background-color: rgba(228, 248, 255, 0.9); 
     color: #144A5D;
     border-color: #144A5D;
 }
 
-/* Estilo dos Botões de Seleção de Perfil */
 .user-type-selector {
     display: flex;
     gap: 15px;
     justify-content: center;
 }
 .radio-button-wrapper input[type="radio"] {
-    display: none; /* Esconde o botão de rádio original */
+    display: none;
 }
 .radio-button-wrapper label {
     display: block;
@@ -689,7 +669,6 @@ body::before {
     border-color: #144A5D;
 }
 
-/* Estilos para Validação (Itens 9, 11, 12) */
 .form-group input.invalid {
     border: 1px solid #ff4d4d;
     box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
@@ -733,26 +712,22 @@ body::before {
     background-color: #5a6a70;
 }
 
-/* Adicione isso ao final do seu style.css */
-
 .validation-icon svg {
-    vertical-align: middle; /* Alinha o ícone com o texto */
+    vertical-align: middle; 
     margin-right: 8px;
 }
 
 .validation-rules div.valid .validation-icon {
-    color: #4dff88; /* Verde */
+    color: #4dff88; 
 }
 
 .validation-rules div.invalid .validation-icon {
-    color: #ff4d4d; /* Vermelho */
+    color: #ff4d4d; 
 }
-
-/* Adicione isso ao final do seu style.css */
 
 #submitButton {
     display: block;
-    margin: 20px auto 0 auto; /* Centraliza o botão e adiciona uma margem no topo */
-    width: 60%; /* Define uma largura para o botão */
+    margin: 20px auto 0 auto;
+    width: 60%;
     max-width: 300px;
 }

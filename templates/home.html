@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Página Inicial | Roraima Trade Hub{% endblock %}
-
 {% block content %}
-
 <section class="hero">
     <div class="hero-image">
         {% for hero in hero_images %}
@@ -20,7 +17,6 @@
         <p>A vitrine do comércio de Roraima para o mundo</p>
     </div>
 </section>
-
 <section class="navigation-grid">
     <a href="#" class="grid-item" id="comprar">
         <img src="{% static 'images/icone-comprar.svg' %}" alt="">
@@ -55,5 +51,4 @@
         <span>Notícias</span>
     </a>
 </section>
-
 {% endblock %}

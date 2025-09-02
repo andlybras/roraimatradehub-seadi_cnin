@@ -4,11 +4,9 @@
 <head> <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Roraima Trade Hub{% endblock %}</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;600;700&family=Bakbak+One&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -18,11 +16,9 @@
                 <a href="{% url 'home' %}" aria-label="Acesso à página Home">
                     <img src="{% static 'images/icone_acesso_home.svg' %}" alt="Ícone para acesso a página Home">
                 </a>
-                
                 <a href="#" aria-label="Acesso à conta do usuário"> 
                     <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="Ícone para acesso à conta do usuário">
                 </a>
-                
                 <a href="{% url 'admin:index' %}" aria-label="Acesso ao painel administrativo" target="_blank">
                     <img src="{% static 'images/icone_acesso_admin.svg' %}" alt="Ícone para acesso ao painel administrativo">
                 </a>
@@ -35,13 +31,11 @@
                 {% endfor %}
             </div>
         </header>
-
         <main>
             {% block content %}
             {% endblock %}
         </main>
     </div>
-
     <footer class="site-footer">
         <div class="container">
             <section class="partners-section">
@@ -58,7 +52,6 @@
                 </div>
             </section>
         </div>
-
         <div class="main-footer-content">
             <div class="container">
                 <p>&copy; {% now "Y" %} Governo de Roraima. Todos os direitos reservados.</p>
@@ -66,8 +59,6 @@
             </div>
         </div>
     </footer>
-
     <script src="{% static 'js/main.js' %}"></script>
 </body>
-</html>
 </html>
