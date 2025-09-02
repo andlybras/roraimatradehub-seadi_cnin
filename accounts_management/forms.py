@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
+from captcha.fields import ReCaptchaField
 
 class CustomUserCreationForm(UserCreationForm):
     user_type = forms.ChoiceField(
@@ -29,6 +30,7 @@ class CustomUserCreationForm(UserCreationForm):
         label="Confirmação de senha",
         widget=forms.PasswordInput(attrs={'placeholder': 'Confirme sua senha'})
     )
+    captcha = ReCaptchaField()
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser

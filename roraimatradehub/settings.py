@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'core',
     'site_setup',
     'accounts_management',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -96,3 +97,7 @@ AUTH_USER_MODEL = 'accounts_management.CustomUser'
 LOGIN_REDIRECT_URL = 'dashboard'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+RECAPTCHA_PUBLIC_KEY = '6Lf66rsrAAAAACWht4GeVykIx_0V8JmwOMGmPEbm'
+
+RECAPTCHA_PRIVATE_KEY = '6Lf66rsrAAAAAACV9CLGp8O3Wiq8q1sRU-s2KObF'
