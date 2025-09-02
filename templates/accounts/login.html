@@ -8,7 +8,7 @@
     <div class="registration-panel">
         <h1 class="page-title" style="margin-bottom: 30px;">Acesse seu Perfil</h1>
         
-        <form method="post">
+        <form method="post" id="loginForm">
             {% csrf_token %}
 
             {% if form.non_field_errors %}
@@ -29,7 +29,7 @@
                 {{ form.password }}
             </div>
             
-            <button type="submit" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto;">
+            <button type="submit" id="loginButton" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto;" disabled>
                 Entrar
             </button>
         </form>

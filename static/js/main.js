@@ -171,4 +171,37 @@ document.addEventListener('DOMContentLoaded', function() {
         // Roda uma vez para definir o estado inicial do botão
         checkFormValidity();
     }
+    // --- LÓGICA PARA O FORMULÁRIO DE LOGIN ---
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        const usernameInput = document.getElementById('id_username');
+        const passwordInput = document.getElementById('id_password');
+        const loginButton = document.getElementById('loginButton');
+
+        function checkLoginForm() {
+            // Adiciona ou remove a classe 'filled' para o estilo do CSS
+            if (usernameInput.value.length > 0) {
+                usernameInput.classList.add('filled');
+            } else {
+                usernameInput.classList.remove('filled');
+            }
+
+            if (passwordInput.value.length > 0) {
+                passwordInput.classList.add('filled');
+            } else {
+                passwordInput.classList.remove('filled');
+            }
+
+            // Habilita ou desabilita o botão
+            const isFormValid = usernameInput.value.length > 0 && passwordInput.value.length > 0;
+            loginButton.disabled = !isFormValid;
+        }
+
+        // Adiciona os "escutadores" de eventos para rodar a checagem a cada tecla digitada
+        usernameInput.addEventListener('input', checkLoginForm);
+        passwordInput.addEventListener('input', checkLoginForm);
+
+        // Roda a função uma vez no início para garantir o estado correto
+        checkLoginForm();
+    }
 });

@@ -621,12 +621,13 @@ body::before {
     font-weight: 600;
 }
 
+/* ESTILO PADRÃO PARA OS CAMPOS DE FORMULÁRIO (LOGIN E REGISTRO) */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
     width: 100%;
     padding: 12px 20px;
-    background-color: rgba(20, 74, 93, 0.5);
+    background-color: rgba(20, 74, 93, 0.5); /* Fundo semi-transparente */
     border: 1px solid #E4F8FF;
     border-radius: 25px;
     color: #E4F8FF;
@@ -639,10 +640,11 @@ body::before {
     color: rgba(228, 248, 255, 0.5);
 }
 
+/* ESTILO PARA OS CAMPOS QUANDO SELECIONADOS OU PREENCHIDOS */
 .form-group input:focus,
-.form-group input:not(:placeholder-shown) {
-    background-color: rgba(228, 248, 255, 0.9); 
-    color: #144A5D;
+.form-group input.filled {  /* Usaremos a classe 'filled' que o JS vai adicionar */
+    background-color: rgba(228, 248, 255, 0.9); /* Fundo branco */
+    color: #144A5D; /* Texto escuro */
     border-color: #144A5D;
 }
 
