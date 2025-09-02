@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'core',
     'site_setup',
     'accounts_management',
-    'captcha',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [

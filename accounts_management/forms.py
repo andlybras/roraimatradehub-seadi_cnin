@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
-from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 
 class CustomUserCreationForm(UserCreationForm):
     user_type = forms.ChoiceField(
