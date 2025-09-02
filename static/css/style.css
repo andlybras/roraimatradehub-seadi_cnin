@@ -704,14 +704,20 @@ body::before {
     margin-top: 5px;
 }
 
-#submitButton:disabled {
-    background-color: #5a6a70;
-    cursor: not-allowed;
-    color: #aaaaaa;
+.grid-item:disabled,
+#submitButton:disabled { /* Mantemos o #submitButton para garantir a especificidade */
+    background-color: #5a6a70 !important; /* Cor mais escura */
+    color: #aaaaaa !important; /* Texto acinzentado */
+    cursor: not-allowed; /* Cursor de "proibido" */
     transform: none;
+    border-color: #5a6a70 !important;
 }
+
+/* Remove o efeito de hover ESPECIFICAMENTE quando o botão está desabilitado */
+.grid-item:disabled:hover,
 #submitButton:disabled:hover {
-    background-color: #5a6a70;
+    background-color: #5a6a70 !important;
+    transform: none;
 }
 
 .validation-icon svg {
