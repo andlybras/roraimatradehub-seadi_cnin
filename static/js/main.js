@@ -16,17 +16,26 @@ document.addEventListener('DOMContentLoaded', function() {
             addAnimation(scroller);
         });
     }
+
     function addAnimation(scroller) {
         const scrollerInner = scroller.querySelector(".scroller-inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
+        // --- TRAVA DE SEGURANÇA ADICIONADA AQUI ---
+        // Se não houver nenhum logo para animar, a função para aqui para evitar erros.
+        if (scrollerContent.length === 0) {
+            return;
+        }
+
+        // Etapa 1: Garante que o conteúdo seja largo o suficiente para preencher o scroller
         let contentWidth = 0;
         scrollerContent.forEach(item => {
             const style = window.getComputedStyle(item);
             contentWidth += item.offsetWidth + (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
         });
 
-        if (contentWidth < scroller.offsetWidth) {
+        // Adiciona outra trava para evitar divisão por zero se a largura for 0
+        if (contentWidth > 0 && contentWidth < scroller.offsetWidth) {
             const clonesNeeded = Math.ceil(scroller.offsetWidth / contentWidth);
             for (let i = 0; i < clonesNeeded; i++) {
                 scrollerContent.forEach(item => {
@@ -36,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+        
+        // Etapa 2: Duplica todo o conteúdo para o loop da animação
         const finalContent = Array.from(scrollerInner.children);
         finalContent.forEach(item => {
             const duplicatedItem = item.cloneNode(true);
@@ -45,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         scroller.setAttribute("data-animated", "true");
     }
+
+    // --- LÓGICA DO SLIDESHOW HERO ---
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
         let currentHeroSlide = 0;

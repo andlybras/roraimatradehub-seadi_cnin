@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Conta Ativada{% endblock %}
+{% block content %}
+<div class="registration-container">
+    <div class="registration-panel" style="text-align: center;">
+        <h1 class="page-title">Conta ativada com sucesso!</h1>
+        <p style="font-size: 1.2rem;">Obrigado pela confirmação. Você já pode fazer o login.</p>
+        <a href="{% url 'login' %}" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto; text-decoration: none;">Ir para Login</a>
+    </div>
+</div>
+{% endblock %}

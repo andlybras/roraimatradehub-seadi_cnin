@@ -12,6 +12,10 @@ class CustomUser(AbstractUser):
         default='empreendedor',
         verbose_name="Este perfil é para"
     )
+    is_email_verified = models.BooleanField(
+        default=False,
+        verbose_name="E-mail verificado"
+    )
     
 class EmpresaUser(CustomUser):
     class Meta:
