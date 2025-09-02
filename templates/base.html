@@ -16,7 +16,7 @@
                 <a href="{% url 'home' %}" aria-label="Acesso à página Home">
                     <img src="{% static 'images/icone_acesso_home.svg' %}" alt="Ícone para acesso a página Home">
                 </a>
-                <a href="#" aria-label="Acesso à conta do usuário"> 
+                <a href="{% url 'login' %}" aria-label="Acesso à conta do usuário"> 
                     <img src="{% static 'images/icone_acesso_conta_usuario.svg' %}" alt="Ícone para acesso à conta do usuário">
                 </a>
                 <a href="{% url 'admin:index' %}" aria-label="Acesso ao painel administrativo" target="_blank">
