@@ -621,13 +621,12 @@ body::before {
     font-weight: 600;
 }
 
-/* ESTILO PADRÃO PARA OS CAMPOS DE FORMULÁRIO (LOGIN E REGISTRO) */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
     width: 100%;
     padding: 12px 20px;
-    background-color: rgba(20, 74, 93, 0.5); /* Fundo semi-transparente */
+    background-color: rgba(20, 74, 93, 0.5); 
     border: 1px solid #E4F8FF;
     border-radius: 25px;
     color: #E4F8FF;
@@ -640,11 +639,10 @@ body::before {
     color: rgba(228, 248, 255, 0.5);
 }
 
-/* ESTILO PARA OS CAMPOS QUANDO SELECIONADOS OU PREENCHIDOS */
 .form-group input:focus,
-.form-group input.filled {  /* Usaremos a classe 'filled' que o JS vai adicionar */
-    background-color: rgba(228, 248, 255, 0.9); /* Fundo branco */
-    color: #144A5D; /* Texto escuro */
+.form-group input.filled {
+    background-color: rgba(228, 248, 255, 0.9);
+    color: #144A5D; 
     border-color: #144A5D;
 }
 
@@ -705,15 +703,14 @@ body::before {
 }
 
 .grid-item:disabled,
-#submitButton:disabled { /* Mantemos o #submitButton para garantir a especificidade */
-    background-color: #5a6a70 !important; /* Cor mais escura */
-    color: #aaaaaa !important; /* Texto acinzentado */
-    cursor: not-allowed; /* Cursor de "proibido" */
+#submitButton:disabled {
+    background-color: #5a6a70 !important; 
+    color: #aaaaaa !important; 
+    cursor: not-allowed; 
     transform: none;
     border-color: #5a6a70 !important;
 }
 
-/* Remove o efeito de hover ESPECIFICAMENTE quando o botão está desabilitado */
 .grid-item:disabled:hover,
 #submitButton:disabled:hover {
     background-color: #5a6a70 !important;

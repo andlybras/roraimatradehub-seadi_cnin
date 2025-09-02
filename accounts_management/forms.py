@@ -1,5 +1,3 @@
-# accounts_management/forms.py
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
@@ -23,9 +21,6 @@ class CustomUserCreationForm(UserCreationForm):
         label="Confirmação de e-mail",
         widget=forms.EmailInput(attrs={'placeholder': 'Confirme seu e-mail'})
     )
-    
-    # --- A CORREÇÃO ESTÁ AQUI ---
-    # O campo foi renomeado de 'password' para 'password1' para corresponder ao que o UserCreationForm espera.
     password1 = forms.CharField(
         label="Senha",
         widget=forms.PasswordInput(attrs={'placeholder': 'Crie uma senha forte'})

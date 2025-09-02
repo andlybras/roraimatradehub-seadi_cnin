@@ -1,10 +1,5 @@
-// static/js/main.js
-
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- LÓGICA GERAL DO SITE ---
-
-    // Scroll do Header
     const header = document.querySelector('.main-header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -15,8 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Animação do carrossel de parceiros
     const scrollers = document.querySelectorAll(".scroller");
     if (scrollers.length > 0) {
         scrollers.forEach((scroller) => {
@@ -30,8 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
-    // Slideshow da seção Hero
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
         let currentHeroSlide = 0;
@@ -41,11 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             heroSlides[currentHeroSlide].classList.add('is-active');
         }, 10000);
     }
-
-    // --- LÓGICA DO FORMULÁRIO DE REGISTRO ---
     const registrationForm = document.getElementById('registrationForm');
     if (registrationForm) {
-        // (Aqui dentro fica toda a lógica de validação do registro que já fizemos)
         const email = document.getElementById('id_email');
         const email2 = document.getElementById('id_email2');
         const password = document.getElementById('id_password1');
@@ -79,9 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         password2.addEventListener('input', () => { /* ... */ });
         checkRegistrationFormValidity();
     }
-
-
-    // --- LÓGICA PARA O FORMULÁRIO DE LOGIN ---
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         const usernameInput = document.getElementById('id_username');
@@ -89,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginButton = document.getElementById('loginButton');
 
         function checkLoginForm() {
-            // Adiciona ou remove a classe 'filled' para o estilo do CSS
             if (usernameInput.value.length > 0) {
                 usernameInput.classList.add('filled');
             } else {
@@ -101,17 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 passwordInput.classList.remove('filled');
             }
-
-            // Habilita ou desabilita o botão
             const isFormValid = usernameInput.value.length > 0 && passwordInput.value.length > 0;
             loginButton.disabled = !isFormValid;
         }
-
-        // Adiciona os "escutadores" de eventos para rodar a checagem a cada tecla digitada
         usernameInput.addEventListener('input', checkLoginForm);
         passwordInput.addEventListener('input', checkLoginForm);
-
-        // Roda a função uma vez no início para garantir o estado correto do botão
         checkLoginForm();
     }
 
