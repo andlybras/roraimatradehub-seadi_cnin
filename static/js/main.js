@@ -11,17 +11,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     const scrollers = document.querySelectorAll(".scroller");
-    if (scrollers.length > 0) {
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         scrollers.forEach((scroller) => {
-            scroller.setAttribute("data-animated", true);
-            const scrollerInner = scroller.querySelector(".scroller-inner");
-            const scrollerContent = Array.from(scrollerInner.children);
-            scrollerContent.forEach((item) => {
-                const duplicatedItem = item.cloneNode(true);
-                duplicatedItem.setAttribute("aria-hidden", true);
-                scrollerInner.appendChild(duplicatedItem);
-            });
+            addAnimation(scroller);
         });
+    }
+
+    function addAnimation(scroller) {
+        const scrollerInner = scroller.querySelector(".scroller-inner");
+        const scrollerContent = Array.from(scrollerInner.children);
+        let contentWidth = 0;
+        scrollerContent.forEach(item => {
+            const style = window.getComputedStyle(item);
+            contentWidth += item.offsetWidth + (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
+        });
+        if (contentWidth < scroller.offsetWidth) {
+            const clonesNeeded = Math.ceil(scroller.offsetWidth / contentWidth);
+            for (let i = 0; i < clonesNeeded; i++) {
+                scrollerContent.forEach(item => {
+                    const duplicatedItem = item.cloneNode(true);
+                    duplicatedItem.setAttribute('aria-hidden', true);
+                    scrollerInner.appendChild(duplicatedItem);
+                });
+            }
+        }
+        const finalContent = Array.from(scrollerInner.children);
+        finalContent.forEach(item => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute('aria-hidden', true);
+            scrollerInner.appendChild(duplicatedItem);
+        });
+        
+        scroller.setAttribute("data-animated", "true");
     }
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
