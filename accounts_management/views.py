@@ -60,6 +60,21 @@ class CustomLoginView(auth_views.LoginView):
         context['header_logos'] = HeaderLogo.objects.all()
         context['partner_logos'] = PartnerLogo.objects.all().order_by('order')
         return context
+    
+    def form_valid(self, form):
+        """
+        Esta função é chamada após o Django confirmar que o usuário e a senha estão corretos.
+        """
+        user = form.get_user()
+
+        # Verificamos nosso campo personalizado 'is_email_verified'
+        if user.is_email_verified:
+            # Se o e-mail foi verificado, permite o login normalmente.
+            return super().form_valid(form)
+        else:
+            # Se não, adiciona um erro ao formulário e o exibe novamente.
+            form.add_error(None, "Sua conta ainda não foi ativada. Por favor, verifique seu e-mail.")
+            return self.form_invalid(form)
 
 def activate(request, uidb64, token):
     try:
