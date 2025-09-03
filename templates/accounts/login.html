@@ -32,6 +32,13 @@
             <button type="submit" id="loginButton" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto;" disabled>
                 Entrar
             </button>
+            <div style="text-align: center; margin-top: 25px;">
+                <p>Não recebeu o e-mail de ativação? 
+                    <a href="{% url 'resend_activation_email' %}" style="color: #E4F8FF; font-weight: 600;">
+                        Reenviar link
+                    </a>
+                </p>
+            </div>
         </form>
     </div>
 </div>

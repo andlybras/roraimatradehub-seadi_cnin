@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,  ResendActivationEmailForm
 from site_setup.models import HeaderLogo, PartnerLogo
 from django.contrib.auth import views as auth_views
 
@@ -98,3 +98,43 @@ def dashboard(request):
         'partner_logos': PartnerLogo.objects.all().order_by('order'),
     }
     return render(request, 'accounts/dashboard.html', context)
+
+def resend_activation_email(request):
+    if request.method == 'POST':
+        form = ResendActivationEmailForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            
+            # Tenta encontrar um usuário com o e-mail fornecido
+            try:
+                user = CustomUser.objects.get(email=email)
+            except CustomUser.DoesNotExist:
+                user = None
+
+            if user:
+                # Se o usuário existir, verifica se ele já está ativo
+                if user.is_active:
+                    # Se já estiver ativo, redireciona para a nova página
+                    return redirect('account_already_active')
+                else:
+                    # Se não estiver ativo, envia o novo link
+                    subject = 'Ative sua conta no Roraima Trade Hub (Novo Link)'
+                    message = render_to_string('emails/account_activation_email.html', {
+                        'user': user,
+                        'domain': request.META['HTTP_HOST'],
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                    })
+                    send_mail(subject, message, None, [user.email])
+            
+            # Em caso de sucesso (ou se o e-mail não existir), vai para a pág de "enviado"
+            return redirect('account_activation_sent')
+    else:
+        form = ResendActivationEmailForm()
+
+    context = {
+        'form': form,
+        'header_logos': HeaderLogo.objects.all(),
+        'partner_logos': PartnerLogo.objects.all().order_by('order'),
+    }
+    return render(request, 'accounts/resend_activation.html', context)

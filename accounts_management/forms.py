@@ -42,3 +42,9 @@ class CustomUserCreationForm(UserCreationForm):
         if email and email2 and email != email2:
             raise forms.ValidationError("Os e-mails não são iguais.")
         return email2
+    
+class ResendActivationEmailForm(forms.Form):
+    email = forms.EmailField(
+        label="E-mail",
+        widget=forms.EmailInput(attrs={'placeholder': 'Digite seu e-mail de cadastro'})
+    )

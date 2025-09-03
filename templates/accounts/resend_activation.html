@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Reenviar Link de Ativação | Roraima Trade Hub{% endblock %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="registration-panel">
+        <h1 class="page-title" style="margin-bottom: 30px;">Reenviar Ativação</h1>
+        <p style="font-size: 1.1rem; line-height: 1.6; text-align: center; margin-bottom: 30px;">
+            Perdeu o e-mail de ativação ou o link expirou? Digite seu e-mail abaixo e enviaremos um novo link para você.
+        </p>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div style="color: #ff9999; font-size: 0.9rem; margin-top: 5px;">
+                        {% for error in form.email.errors %}{{ error }}{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto;">
+                Enviar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

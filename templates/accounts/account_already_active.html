@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Conta Já Ativa | Roraima Trade Hub{% endblock %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="registration-panel" style="text-align: center;">
+        <h1 class="page-title" style="margin-bottom: 30px;">Sua Conta Já Está Ativa</h1>
+        <p style="font-size: 1.2rem; line-height: 1.6;">
+            Verificamos que o seu e-mail já está associado a uma conta ativa em nossa plataforma.
+            <br><br>
+            Você pode ir diretamente para a página de login para acessar seu perfil.
+        </p>
+        <a href="{% url 'login' %}" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto; text-decoration: none;">
+            Ir para Login
+        </a>
+    </div>
+</div>
+{% endblock %}
