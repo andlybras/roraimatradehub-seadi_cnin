@@ -1,10 +1,14 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-#32i04xc-6c-%-@$q32tzj6gh@9-4f%4_)t%!ssq&-avx1^sg@'
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY', 
+    'django-insecure-#32i04xc-6c-%-@$q32tzj6gh@9-4f%4_)t%!ssq&-avx1^sg@'
+)
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -74,7 +78,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Boa_Vista'
 
 USE_I18N = True
 
@@ -85,6 +89,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -98,8 +104,20 @@ LOGIN_REDIRECT_URL = 'dashboard'
 
 LOGOUT_REDIRECT_URL = 'home'
 
-RECAPTCHA_PUBLIC_KEY = '6Lf66rsrAAAAACWht4GeVykIx_0V8JmwOMGmPEbm'
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY', '6Lf66rsrAAAAACWht4GeVyklx_0V8JmwOMGmPEbm')
 
-RECAPTCHA_PRIVATE_KEY = '6Lf66rsrAAAAAACV9CLGp8O3Wiq8q1sRU-s2KObF'
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY', '6Lf66rsrAAAAAACV9CLGp8O3Wiq8q1sRU-s2KObF')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
