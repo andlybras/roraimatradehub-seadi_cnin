@@ -33,7 +33,10 @@
                 Entrar
             </button>
             <div style="text-align: center; margin-top: 25px;">
-                <p>Não recebeu o e-mail de ativação? 
+                <a href="{% url 'password_reset' %}" style="color: #E4F8FF; font-weight: 600;">
+                    Esqueceu a senha?
+                </a>
+                <p style="margin-top: 15px;">Não recebeu o e-mail de ativação? 
                     <a href="{% url 'resend_activation_email' %}" style="color: #E4F8FF; font-weight: 600;">
                         Reenviar link
                     </a>
