@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'core',
     'site_setup',
     'accounts_management',
+    'profiles_management',
     'django_recaptcha',
 ]
 

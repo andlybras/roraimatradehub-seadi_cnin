@@ -273,3 +273,131 @@ document.addEventListener('DOMContentLoaded', function() {
         checkLoginForm();
     }
 });
+
+// --- CÓDIGO PARA A PÁGINA DE GERENCIAMENTO DE PERFIL ---
+document.addEventListener('DOMContentLoaded', function() {
+    const profileForm = document.querySelector('.profile-form');
+    if (!profileForm) {
+        return;
+    }
+
+    const submitButton = profileForm.querySelector('button[type="submit"]');
+
+    function checkFormValidity() {
+        if (!submitButton) return;
+        let allValid = true;
+        const requiredFields = profileForm.querySelectorAll('[required]');
+
+        requiredFields.forEach(field => {
+            if (field.type === 'checkbox') {
+                if (!field.checked) allValid = false;
+            } else {
+                if (field.value.trim() === '') allValid = false;
+            }
+        });
+        submitButton.disabled = !allValid;
+    }
+
+    function checkFilledState(element) {
+        if (!element) return;
+        if (element.type === 'file' || element.type === 'checkbox' || element.type === 'hidden') return;
+
+        const isTomSelect = element.classList.contains('tomselected');
+        const target = isTomSelect ? document.getElementById(element.id.replace('-ts-control', '')) : element;
+        const wrapper = isTomSelect ? target.tomselect.wrapper : element;
+
+        if (target.value && target.value !== '') {
+            wrapper.classList.add('filled');
+        } else {
+            wrapper.classList.remove('filled');
+        }
+    }
+
+    function setupEventListeners() {
+        profileForm.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('input', () => {
+                checkFilledState(input);
+                checkFormValidity();
+            });
+            input.addEventListener('change', () => {
+                checkFilledState(input);
+                checkFormValidity();
+            });
+            input.addEventListener('focus', () => input.classList.add('filled'));
+            input.addEventListener('blur', () => {
+                if(!input.value) input.classList.remove('filled');
+                checkFilledState(input);
+            });
+        });
+    }
+
+    const cepInput = document.getElementById('id_cep');
+    if (cepInput) {
+        cepInput.addEventListener('blur', function() {
+            const cep = this.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            const fields = {
+                                'id_logradouro': data.logradouro,
+                                'id_bairro': data.bairro,
+                                'id_cidade': data.localidade,
+                                'id_uf': data.uf
+                            };
+                            for (const [id, value] of Object.entries(fields)) {
+                                const el = document.getElementById(id);
+                                if(el) el.value = value;
+                            }
+                            profileForm.querySelectorAll('#id_logradouro, #id_bairro, #id_cidade, #id_uf').forEach(checkFilledState);
+                            checkFormValidity();
+                            document.getElementById('id_numero').focus();
+                        } else {
+                            alert('CEP não encontrado.');
+                        }
+                    });
+            }
+        });
+    }
+
+    function applyInputMasks() {
+        profileForm.querySelectorAll('.cnpj-mask').forEach(input => {
+            input.addEventListener('input', e => {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                e.target.value = value.slice(0, 18);
+            });
+        });
+        profileForm.querySelectorAll('.phone-mask').forEach(input => {
+            input.addEventListener('input', e => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 2) value = `+55 (${value.substring(2)}`;
+                if (value.length > 7) value = `${value.substring(0, 7)}) ${value.substring(7)}`;
+                if (value.length > 15) { // +55 (XX) 9XXXX-XXXX
+                    value = `${value.substring(0, 14)}-${value.substring(14)}`;
+                } else if (value.length > 10 && value.length < 15) { // +55 (XX) XXXX-XXXX
+                     value = `${value.substring(0, 13)}-${value.substring(13)}`;
+                }
+                e.target.value = value.slice(0, 19);
+            });
+        });
+    }
+
+    if (document.getElementById('id_cnae_principal')) {
+        new TomSelect('#id_cnae_principal',{ create: false, sortField: { field: "text", direction: "asc" }, onChange: checkFormValidity });
+    }
+    if (document.getElementById('id_cnaes_secundarios')) {
+        new TomSelect('#id_cnaes_secundarios',{ plugins: ['remove_button'], create: false, sortField: { field: "text", direction: "asc" }, onChange: checkFormValidity });
+    }
+
+    setupEventListeners();
+    applyInputMasks();
+    setTimeout(() => {
+        profileForm.querySelectorAll('input, textarea, select').forEach(checkFilledState);
+        checkFormValidity();
+    }, 200);
+});

@@ -1,24 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Meu Painel | Roraima Trade Hub{% endblock %}
+{% block title %}Área Empresarial | Roraima Trade Hub{% endblock %}
 
 {% block content %}
-<div class="registration-container">
-    <div class="registration-panel" style="text-align: center;">
-        <h1 class="page-title" style="margin-bottom: 30px;">Meu Painel</h1>
+<h1 class="page-title">Área Empresarial</h1>
 
-        <p style="font-size: 1.2rem; margin-bottom: 40px;">
-            Olá, <strong>{{ user.username }}</strong>! Bem-vindo(a) de volta.
-        </p>
-
-        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+<div class="page-layout">
+    <aside class="sidebar-column">
+    <div class="dashboard-menu">
+        <a href="{% url 'dashboard' %}" class="dashboard-menu-item is-active">
+            <span class="menu-icon icon-visao-geral"></span>
+            <span>Visão Geral</span>
+        </a>
+        <a href="{% url 'manage_profile' %}" class="dashboard-menu-item">
+            <span class="menu-icon icon-dados-empresariais"></span>
+            <span>Dados Empresariais</span>
+        </a>
+        <a href="#" class="dashboard-menu-item">
+            <span class="menu-icon icon-raio-x"></span>
+            <span>Raio-X Comercial</span>
+        </a>
+        <a href="#" class="dashboard-menu-item">
+            <span class="menu-icon icon-vitrine"></span>
+            <span>Vitrine</span>
+        </a>
+        <a href="#" class="dashboard-menu-item">
+            <span class="menu-icon icon-consultoria"></span>
+            <span>Consultoria</span>
+        </a>
+        <a href="#" class="dashboard-menu-item">
+            <span class="menu-icon icon-suporte"></span>
+            <span>Suporte</span>
+        </a>
+        
+        <form action="{% url 'logout' %}" method="post" style="margin: 0;">
             {% csrf_token %}
-            <button type="submit" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 0 auto; text-decoration: none; border: none; cursor: pointer; font-family: inherit; font-size: 1.1rem;">
-                Sair (Logout)
+            <button type="submit" class="dashboard-menu-item">
+                <span class="menu-icon icon-sair"></span>
+                <span>Sair</span>
             </button>
         </form>
+    </div>
+</aside>
 
+    <div class="main-column">
+        <div class="content-panel">
+            <div class="dashboard-content">
+                <h2>Olá, {{ user.username }}!</h2>
+                <p>Bem-vindo(a) à sua Área Empresarial. Use o menu ao lado para navegar pelas seções.</p>
+                <p>Este é o painel de "Visão Geral". Em breve, teremos gráficos e informações rápidas sobre sua atividade na plataforma aqui.</p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

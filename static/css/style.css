@@ -766,3 +766,293 @@ body::before {
     height: auto; /* Altura automática baseada no conteúdo */
     margin-top: 15px;
 }
+/* =============================================== */
+/* --- ESTILOS DO DASHBOARD EMPRESARIAL --- */
+/* =============================================== */
+
+.dashboard-menu {
+    width: 100%;
+    background-color: rgba(20, 74, 93, 0.3);
+    border: 0.5px solid #E4F8FF;
+    border-radius: 40px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #E4F8FF;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.dashboard-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-menu-item.is-active {
+    background-color: #E4F8FF;
+    color: #144A5D;
+}
+
+.dashboard-content {
+    padding: 40px;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.dashboard-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+/* --- ESTILO DOS ÍCONES DO DASHBOARD (CSS MASK) --- */
+.menu-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-color: #E4F8FF; /* Cor padrão (branca) */
+    transition: background-color 0.3s ease;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.icon-visao-geral { -webkit-mask-image: url('/static/images/icone-visao-geral.svg'); mask-image: url('/static/images/icone-visao-geral.svg'); }
+.icon-dados-empresariais { -webkit-mask-image: url('/static/images/icone-dados-empresariais.svg'); mask-image: url('/static/images/icone-dados-empresariais.svg'); }
+.icon-raio-x { -webkit-mask-image: url('/static/images/icone-raio-x.svg'); mask-image: url('/static/images/icone-raio-x.svg'); }
+.icon-vitrine { -webkit-mask-image: url('/static/images/icone-vitrine.svg'); mask-image: url('/static/images/icone-vitrine.svg'); }
+.icon-consultoria { -webkit-mask-image: url('/static/images/icone-consultoria.svg'); mask-image: url('/static/images/icone-consultoria.svg'); }
+.icon-suporte { -webkit-mask-image: url('/static/images/icone-suporte.svg'); mask-image: url('/static/images/icone-suporte.svg'); }
+.icon-sair { -webkit-mask-image: url('/static/images/icone-sair.svg'); mask-image: url('/static/images/icone-sair.svg'); }
+
+.dashboard-menu-item.is-active .menu-icon {
+    /* Muda a cor do fundo do estêncil para o azul escuro exato */
+    background-color: #144A5D;
+}
+
+/* --- ESTILO DAS COLUNAS DO LAYOUT DA PÁGINA --- */
+.main-column {
+    display: flex; 
+    flex-direction: column; 
+}
+
+.main-column .content-panel {
+    flex-grow: 1; 
+}
+
+/* =============================================== */
+/* --- ESTILOS DO FORMULÁRIO DE PERFIL --- */
+/* =============================================== */
+
+.profile-form {
+    margin-top: 30px;
+}
+
+.form-section {
+    border: 1px solid rgba(228, 248, 255, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.form-section legend {
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 0 15px;
+    color: #E4F8FF;
+}
+
+.profile-form .form-group {
+    margin-bottom: 15px;
+}
+
+.profile-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.profile-form .form-group input,
+.profile-form .form-group select,
+.profile-form .form-group textarea {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: rgba(20, 74, 93, 0.5);
+    border: 1px solid #E4F8FF;
+    border-radius: 25px;
+    color: #E4F8FF;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-form .form-group select[multiple] {
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.readonly-group input {
+    background-color: rgba(20, 74, 93, 0.2) !important;
+    cursor: not-allowed;
+}
+
+/* Item 1: Fundo branco para campos preenchidos */
+.profile-form .form-group input.filled,
+.profile-form .form-group textarea.filled,
+.profile-form .form-group .ts-wrapper.filled .ts-control {
+    background-color: rgba(228, 248, 255, 0.9) !important;
+    color: #144A5D !important;
+    border-color: #144A5D !important;
+}
+
+/* Item 6: Largura do seletor CNAE */
+.ts-control {
+    border-radius: 25px !important;
+    border: 1px solid #E4F8FF !important;
+    background-color: rgba(20, 74, 93, 0.5) !important;
+    padding: 10px 20px !important;
+    color: #E4F8FF;
+}
+.ts-dropdown {
+    background-color: #144A5D !important;
+    border-color: #E4F8FF !important;
+}
+.ts-dropdown .option {
+    color: #E4F8FF;
+}
+.ts-dropdown .option:hover, .ts-dropdown .active {
+    background-color: rgba(228, 248, 255, 0.9) !important;
+    color: #144A5D !important;
+}
+
+/* Item 8: Botão centralizado e campo de declaração */
+.submit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.submit-wrapper button {
+    width: 100%;
+    max-width: 400px;
+}
+.declaration-group .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.declaration-group input[type="checkbox"] {
+    width: auto;
+    accent-color: #144A5D;
+}
+
+
+/* =============================================== */
+/* --- AJUSTES FINAIS DO FORMULÁRIO DE PERFIL --- */
+/* =============================================== */
+
+/* Item 1: Largura do formulário */
+.dashboard-content {
+    padding: 40px; /* Mantém o padding interno */
+}
+
+/* Item 2: Fundo branco para campos selecionados E preenchidos */
+.profile-form .form-group input:focus,
+.profile-form .form-group textarea:focus,
+.profile-form .form-group .ts-wrapper.focus .ts-control, /* Tom-Select focado */
+.profile-form .form-group input.filled,
+.profile-form .form-group textarea.filled,
+.profile-form .form-group .ts-wrapper.filled .ts-control {
+    background-color: rgba(228, 248, 255, 0.9) !important;
+    color: #144A5D !important;
+    border-color: #144A5D !important;
+}
+
+/* Item 6 e 7: Estilos para o Tom-Select (CNAE) */
+.ts-control {
+    border-radius: 25px !important;
+    border: 1px solid #E4F8FF !important;
+    background-color: rgba(20, 74, 93, 0.5) !important;
+    padding: 10px 20px !important;
+}
+.ts-control .ts-input { /* Cor do texto ao digitar */
+    color: #E4F8FF;
+}
+.ts-dropdown {
+    background-color: #144A5D !important;
+    border-color: #E4F8FF !important;
+}
+.ts-dropdown .option {
+    color: #E4F8FF;
+}
+.ts-dropdown .option:hover, .ts-dropdown .active {
+    background-color: rgba(228, 248, 255, 0.9) !important;
+    color: #144A5D !important;
+}
+/* Empilhar itens no CNAE secundário */
+.ts-control > .item {
+    background-color: #144A5D; /* Cor de fundo azul escuro */
+    color: #E4F8FF; /* Cor do texto branca */
+    border: 1px solid #E4F8FF;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 3px;
+    display: inline-block; /* Mantém lado a lado, mas permite quebra de linha */
+}
+.ts-wrapper.multi .ts-control {
+    padding: 5px !important; /* Ajuste no padding para o campo multi-select */
+}
+
+
+/* Item 8 e 9: Estilos para o botão e declaração */
+.submit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.submit-wrapper button {
+    width: 100%;
+    max-width: 400px;
+}
+.declaration-group .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.declaration-group input[type="checkbox"] {
+    width: auto;
+    accent-color: #144A5D;
+}
+.required-notice {
+    font-size: 0.9rem;
+    color: #ffc4c4;
+}
+.profile-form label {
+    color: #E4F8FF; /* Garante que todos os labels fiquem brancos */
+}
+label.required::after {
+    content: " *";
+    color: #ff9999;
+}
