@@ -73,7 +73,31 @@
             <button type="submit" id="submitButton" class="grid-item" disabled>
                 Criar meu Perfil
             </button>
+            <div id="form-message" class="form-validation-message">
+                Por favor, preencha todos os campos e valide o reCAPTCHA.
+            </div>
         </form>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    function setupRecaptchaCallback() {
+        const recaptchaFrame = document.querySelector('.g-recaptcha iframe');
+        if (window.grecaptcha && window.grecaptcha.render) {
+            const recaptchaResponse = document.getElementById('g-recaptcha-response');
+            if (recaptchaResponse) {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                             window.recaptchaCallback();
+                        }
+                    });
+                });
+                observer.observe(recaptchaResponse, { attributes: true });
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', setupRecaptchaCallback);
+</script>
 {% endblock %}

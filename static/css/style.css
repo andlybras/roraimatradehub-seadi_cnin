@@ -40,7 +40,8 @@ body::before {
     padding: 15px 25px;
     border: 0.5px solid #E4F8FF;
     border-radius: 50px;
-    margin-bottom: 10px;
+    /* --- MODIFICAR AQUI (Item 6) --- */
+    margin-bottom: 20px; /* Era 10px */
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -164,6 +165,17 @@ body::before {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     min-height: 150px;
+}
+
+.grid-item img {
+    height: 50px; /* Define uma altura fixa para todos os ícones */
+    width: auto;  /* Largura se ajusta para manter a proporção */
+}
+.grid-item span {
+    min-height: 2.2rem; /* Garante que títulos de 1 ou 2 linhas ocupem o mesmo espaço */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .grid-item:hover {
@@ -438,7 +450,7 @@ body::before {
 }
 
 .site-footer {
-    margin-top: 40px;
+    margin-top:-20px;
     width: 100%;
 }
 
@@ -735,4 +747,22 @@ body::before {
     margin: 20px auto 0 auto;
     width: 60%;
     max-width: 300px;
+}
+
+/* Estilos para a mensagem de aviso dos formulários */
+.form-validation-message {
+    color: #ff9999;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    text-align: center;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, height 0.4s ease, margin-top 0.4s ease;
+}
+
+.form-validation-message.show {
+    opacity: 1;
+    height: auto; /* Altura automática baseada no conteúdo */
+    margin-top: 15px;
 }
