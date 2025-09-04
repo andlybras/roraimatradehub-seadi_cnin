@@ -19,15 +19,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Função addAnimation RESTAURADA da versão 6.0
     function addAnimation(scroller) {
         const scrollerInner = scroller.querySelector(".scroller-inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
+        // Trava de segurança para evitar erros se não houver logos.
         if (scrollerContent.length === 0) {
             return;
         }
 
+        // Etapa 1: Garante que o conteúdo seja largo o suficiente para preencher o scroller
+        let contentWidth = 0;
         scrollerContent.forEach(item => {
+            const style = window.getComputedStyle(item);
+            contentWidth += item.offsetWidth +
+                (parseFloat(style.marginLeft) || 0) + (parseFloat(style.marginRight) || 0);
+        });
+
+        if (contentWidth > 0 && contentWidth < scroller.offsetWidth) {
+            const clonesNeeded = Math.ceil(scroller.offsetWidth / contentWidth);
+            for (let i = 0; i < clonesNeeded; i++) {
+                scrollerContent.forEach(item => {
+                    const duplicatedItem = item.cloneNode(true);
+                    duplicatedItem.setAttribute('aria-hidden', true);
+                    scrollerInner.appendChild(duplicatedItem);
+                });
+            }
+        }
+
+        // Etapa 2: Duplica todo o conteúdo (agora já preenchido) para o loop da animação
+        const finalContent = Array.from(scrollerInner.children);
+        finalContent.forEach(item => {
             const duplicatedItem = item.cloneNode(true);
             duplicatedItem.setAttribute('aria-hidden', true);
             scrollerInner.appendChild(duplicatedItem);
