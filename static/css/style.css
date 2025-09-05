@@ -127,7 +127,8 @@ body::before {
 }
 
 .hero-text h1 {
-    font-family: 'Bakbak One', cursive;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     font-size: 5rem;
     line-height: 1;
     margin: 0 0 10px 0;
@@ -178,7 +179,7 @@ body::before {
 }
 
 .grid-item:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: #144A5D;
     transform: translateY(-5px);
 }
 
@@ -209,12 +210,28 @@ body::before {
     background-color: #0d2f3b;
 }
 
+.grid-item.dark {
+    background-color: #144A5D;
+    color: #E4F8FF;
+}
+
+.grid-item.dark:hover {
+    background-color: #0d2f3b;
+}
+
 .page-layout {
     display: flex;
     gap: 20px;
 }
 
-.main-column {
+.page-quero-vender .page-layout .main-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.page-quero-vender .page-layout .content-panel {
+    min-height: auto;
     flex-grow: 1;
 }
 
@@ -228,16 +245,21 @@ body::before {
 }
 
 .page-title {
-    font-family: 'Bakbak One', cursive;
-    font-size: 4rem;
-    padding: 10px 30px;
-    background-color: rgba(255, 255, 255, 0.05);
+    font-family: 'Montserrat', cursive;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 10px 80px;
+    background-color: rgba(20, 74, 93, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 0.5px solid #E4F8FF;
     border-radius: 50px;
     display: inline-block;
     margin-bottom: 20px;
+}
+
+#loginButton {
+    font-size: 1.3rem;
 }
 
 .content-panel {
@@ -454,8 +476,8 @@ body::before {
 }
 
 .partners-section {
-    padding: 20px 30px;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 0px;
     border-radius: 25px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.05);
@@ -467,8 +489,8 @@ body::before {
 .partners-section h2 {
     margin-top: 0;
     margin-bottom: 15px;
-    font-family: 'Bakbak One', cursive;
-    font-weight: 400;
+    font-family: 'Montserrat', cursive;
+    font-weight: 700;
 }
 
 .scroller {
@@ -604,15 +626,13 @@ body::before {
 .registration-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 200px);
-    padding: 40px 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .registration-panel {
     width: 100%;
     max-width: 600px;
-    background-color: rgba(20, 74, 93, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 0.5px solid #E4F8FF;
@@ -654,7 +674,7 @@ body::before {
 .form-group input.filled {
     background-color: rgba(228, 248, 255, 0.9);
     color: #144A5D; 
-    border-color: #144A5D;
+    outline: none;
 }
 
 .user-type-selector {
@@ -851,7 +871,7 @@ body::before {
 }
 
 .main-column .content-panel {
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .profile-form {
@@ -1030,4 +1050,9 @@ body::before {
 label.required::after {
     content: " *";
     color: #ff9999;
+}
+
+.page-quero-vender .sidebar-column {
+    justify-content: flex-start;
+    gap: 20px;
 }
