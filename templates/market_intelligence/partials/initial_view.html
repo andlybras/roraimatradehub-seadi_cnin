@@ -1,0 +1,27 @@
+{% load static %}
+
+<h1 class="page-title">Inteligência de Mercado</h1>
+
+<div class="page-layout">
+    <div class="main-column">
+        <div class="content-panel">
+            </div>
+    </div>
+    
+    <aside class="sidebar-column">
+        <a href="#" class="option-card category-button" data-categoria="DADOS_ESTRUTURAIS">
+            <img src="{% static 'images/icone-dados-estruturais.svg' %}" alt="">
+            <span>Dados Estruturais</span>
+        </a>
+        
+        <a href="#" class="option-card dark category-button" data-categoria="ANALISES_E_ARTIGOS">
+            <img src="{% static 'images/icone-artigos.svg' %}" alt="">
+            <span>Análises e Artigos</span>
+        </a>
+        
+        <a href="{% url 'market_intelligence_management:glossario' %}" class="option-card transparent">
+            <img src="{% static 'images/icone-glossario.svg' %}" alt="">
+            <span>Glossário de Termos</span>
+        </a>
+    </aside>
+</div>

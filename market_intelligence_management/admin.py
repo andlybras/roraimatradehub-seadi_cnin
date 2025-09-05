@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GraficoECharts, ConteudoInteligencia
+from .models import GraficoECharts, ConteudoInteligencia, GlossarioTermo
 from tinymce.widgets import TinyMCE
 from django.db import models
 
@@ -16,4 +16,14 @@ class ConteudoInteligenciaAdmin(admin.ModelAdmin):
     search_fields = ('titulo_card', 'titulo_interno', 'corpo_texto')
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
+    }
+    
+@admin.register(GlossarioTermo)
+class GlossarioTermoAdmin(admin.ModelAdmin):
+    list_display = ('termo',)
+    search_fields = ('termo', 'explicacao')
+    
+    # Aplica o editor de texto rico ao campo 'explicacao'
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 20})},
     }

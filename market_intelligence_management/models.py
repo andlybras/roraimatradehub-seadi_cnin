@@ -27,8 +27,8 @@ class GraficoECharts(models.Model):
         return self.titulo
 
     class Meta:
-        verbose_name = "Gráfico ECharts"
-        verbose_name_plural = "1. Gráficos ECharts"
+        verbose_name = "Gráfico"
+        verbose_name_plural = "Gráficos"
 
 class ConteudoInteligencia(models.Model):
     CATEGORIA_CHOICES = [
@@ -47,6 +47,23 @@ class ConteudoInteligencia(models.Model):
         return self.titulo_card
 
     class Meta:
-        verbose_name = "Conteúdo de Inteligência"
-        verbose_name_plural = "2. Conteúdos de Inteligência"
+        verbose_name = "Conteúdo"
+        verbose_name_plural = "Conteúdos"
         ordering = ['categoria', 'titulo_card']
+        
+# ... (os modelos GraficoECharts e ConteudoInteligencia continuam aqui em cima) ...
+
+class GlossarioTermo(models.Model):
+    """
+    Armazena um termo e sua explicação para o glossário.
+    """
+    termo = models.CharField(max_length=100, unique=True, verbose_name="Termo")
+    explicacao = models.TextField(verbose_name="Explicação", help_text="Use as ferramentas de formatação para criar uma explicação clara.")
+
+    def __str__(self):
+        return self.termo
+
+    class Meta:
+        verbose_name = "Termo do Glossário"
+        verbose_name_plural = "3. Glossário de Termos"
+        ordering = ['termo'] # Garante a ordem alfabética

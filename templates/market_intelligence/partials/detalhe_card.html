@@ -1,22 +1,20 @@
-<div class="card-detail-header">
-    <button id="back-to-list-button" class="dashboard-menu-item" style="width: auto; padding: 10px 20px;">
-        &larr; Voltar
-    </button>
-</div>
+<div class="detail-card-wrapper">
 
-<div class="card-detail-content">
-    <h2>{{ card.titulo_interno }}</h2>
-    {% if card.subtitulo %}
-        <p class="subtitulo"><em>{{ card.subtitulo }}</em></p>
-    {% endif %}
-    
-    <hr>
+    <div class="card-detail-header">
+        <button id="back-to-list-button" class="dashboard-menu-item">
+            &larr; Voltar
+        </button>
+    </div>
 
-    {# 
-       O filtro "|safe" é ESSENCIAL aqui. Ele diz ao Django:
-       "Confie neste conteúdo. Ele contém HTML e scripts que você não deve escapar."
-       É isso que permite que nosso editor de texto rico e os gráficos funcionem.
-    #}
-    {{ corpo_processado|safe }}
+    <div class="card-detail-content">
+        <h2>{{ card.titulo_interno }}</h2>
+        {% if card.subtitulo %}
+            <p class="subtitulo"><em>{{ card.subtitulo }}</em></p>
+        {% endif %}
+        
+        <hr>
+        {{ corpo_processado|safe }}
+
+    </div>
 
 </div>
