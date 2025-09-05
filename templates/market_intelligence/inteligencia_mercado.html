@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inteligência de Mercado | Roraima Trade Hub{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Inteligência de Mercado</h1>
+
+<div class="page-layout">
+    <aside class="sidebar-column">
+        <div class="dashboard-menu">            
+            {% for chave, valor in categorias.items %}
+            <button class="dashboard-menu-item category-link" data-categoria="{{ chave }}">
+                <span>{{ valor }}</span>
+            </button>
+            {% endfor %}
+
+        </div>
+    </aside>
+
+    <div class="main-column">
+        <div class="content-panel">
+            <div id="intelligence-content-area" class="dashboard-content">
+                <div id="welcome-message">
+                    <h2>Bem-vindo(a) à Inteligência de Mercado</h2>
+                    <p>Navegue pelas categorias no menu ao lado para explorar nossos dados estruturais, análises e artigos sobre o comércio em Roraima.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

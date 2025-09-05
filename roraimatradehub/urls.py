@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('core.urls')),
     path('accounts/', include('accounts_management.urls')),
     path('profile/', include('profiles_management.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('inteligencia-de-mercado/', include('market_intelligence_management.urls')),
 ]
 
 if settings.DEBUG:

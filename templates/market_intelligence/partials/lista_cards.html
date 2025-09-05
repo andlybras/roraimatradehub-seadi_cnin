@@ -1,0 +1,14 @@
+<div class="card-grid">
+    {% for card in cards %}
+        <a href="#" class="card-link" data-card-id="{{ card.id }}">
+            <div class="card-image-wrapper">
+                <img src="{{ card.imagem_card.url }}" alt="Imagem para {{ card.titulo_card }}">
+            </div>
+            <div class="card-title-wrapper">
+                <h4>{{ card.titulo_card }}</h4>
+            </div>
+        </a>
+    {% empty %}
+        <p>Ainda não há conteúdo disponível nesta categoria.</p>
+    {% endfor %}
+</div>

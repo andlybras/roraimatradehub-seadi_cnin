@@ -19,7 +19,9 @@ INSTALLED_APPS = [
     'site_setup',
     'accounts_management',
     'profiles_management',
+    'market_intelligence_management',
     'django_recaptcha',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
