@@ -35,7 +35,6 @@ class ConteudoInteligencia(models.Model):
         ('DADOS_ESTRUTURAIS', 'Dados Estruturais'),
         ('ANALISES_E_ARTIGOS', 'Análises e Artigos'),
     ]
-
     categoria = models.CharField(max_length=50, choices=CATEGORIA_CHOICES, verbose_name="Categoria")
     titulo_card = models.CharField(max_length=100, verbose_name="Título do Card", help_text="Título que aparece na listagem de cards.")
     imagem_card = models.ImageField(upload_to='intelligence/cards/', verbose_name="Imagem do Card", help_text="Imagem de capa que aparece na listagem.")
@@ -51,12 +50,7 @@ class ConteudoInteligencia(models.Model):
         verbose_name_plural = "Conteúdos"
         ordering = ['categoria', 'titulo_card']
         
-# ... (os modelos GraficoECharts e ConteudoInteligencia continuam aqui em cima) ...
-
 class GlossarioTermo(models.Model):
-    """
-    Armazena um termo e sua explicação para o glossário.
-    """
     termo = models.CharField(max_length=100, unique=True, verbose_name="Termo")
     explicacao = models.TextField(verbose_name="Explicação", help_text="Use as ferramentas de formatação para criar uma explicação clara.")
 
@@ -66,4 +60,4 @@ class GlossarioTermo(models.Model):
     class Meta:
         verbose_name = "Termo do Glossário"
         verbose_name_plural = "3. Glossário de Termos"
-        ordering = ['termo'] # Garante a ordem alfabética
+        ordering = ['termo']

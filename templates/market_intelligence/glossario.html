@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Glossário de Termos | Roraima Trade Hub{% endblock %}
-
 {% block content %}
 <div class="page-layout">
     <div class="main-column">
@@ -14,7 +12,6 @@
                         &larr; Voltar
                     </a>
                 </div>
-
                 <div class="glossario-container">
                     {% for letra, lista_de_termos in termos_agrupados.items %}
                         <div class="letra-secao">

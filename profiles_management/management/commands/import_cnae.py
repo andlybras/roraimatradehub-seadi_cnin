@@ -4,13 +4,10 @@ from profiles_management.models import CNAE
 
 class Command(BaseCommand):
     help = 'Importa os códigos CNAE a partir de um arquivo CSV, lendo por posição da coluna.'
-
     def handle(self, *args, **kwargs):
         file_path = 'cnae_data.csv'
-        
         CNAE.objects.all().delete()
         self.stdout.write(self.style.SUCCESS('Tabela de CNAEs limpa com sucesso.'))
-
         try:
             with open(file_path, 'r', encoding='latin-1') as csv_file:
                 reader = csv.reader(csv_file, delimiter=';')
@@ -31,7 +28,6 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f'{len(cnaes_to_create)} códigos CNAE importados com sucesso!'))
                 else:
                     self.stdout.write(self.style.ERROR('Nenhum código CNAE foi importado. Verifique se o arquivo CSV não está vazio e se o delimitador é ponto e vírgula (;).'))
-
         except FileNotFoundError:
             self.stdout.write(self.style.ERROR(f'Arquivo não encontrado em: {file_path}.'))
         except Exception as e:

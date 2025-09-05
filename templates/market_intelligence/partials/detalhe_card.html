@@ -1,20 +1,15 @@
 <div class="detail-card-wrapper">
-
     <div class="card-detail-header">
         <button id="back-to-list-button" class="dashboard-menu-item">
             &larr; Voltar
         </button>
     </div>
-
     <div class="card-detail-content">
         <h2>{{ card.titulo_interno }}</h2>
         {% if card.subtitulo %}
             <p class="subtitulo"><em>{{ card.subtitulo }}</em></p>
         {% endif %}
-        
         <hr>
         {{ corpo_processado|safe }}
-
     </div>
-
 </div>

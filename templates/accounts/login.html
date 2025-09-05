@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Acesse sua Conta | Roraima Trade Hub{% endblock %}
-
 {% block content %}
 <div class="registration-container">
     <div class="registration-panel">
         <h1 class="page-title" style="margin-bottom: 30px;">Acesse seu Perfil</h1>
-        
         <form method="post" id="loginForm">
             {% csrf_token %}
-
             {% if form.non_field_errors %}
                 <div class="form-errors" style="color: #ff9999; margin-bottom: 15px;">
                     {% for error in form.non_field_errors %}
@@ -18,17 +14,14 @@
                     {% endfor %}
                 </div>
             {% endif %}
-
             <div class="form-group">
                 <label for="{{ form.username.id_for_label }}">Nome de usuário</label>
                 {{ form.username }}
             </div>
-
             <div class="form-group">
                 <label for="{{ form.password.id_for_label }}">Senha</label>
                 {{ form.password }}
             </div>
-            
             <button type="submit" id="loginButton" class="grid-item dark" style="width: 60%; max-width: 300px; margin: 20px auto 0 auto;" disabled>
                 Entrar
             </button>

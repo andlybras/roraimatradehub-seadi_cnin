@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Dados Empresariais | Roraima Trade Hub{% endblock %}
-
 {% block content %}
 <h1 class="page-title">Área Empresarial</h1>
-
 <div class="page-layout">
     <aside class="sidebar-column">
         <div class="dashboard-menu">
@@ -42,19 +39,14 @@
             </form>
         </div>
     </aside>
-
     <div class="main-column">
         <div class="content-panel">
             <div class="dashboard-content">
                 <h2>Dados Empresariais</h2>
                 <p>Mantenha as informações do seu perfil sempre atualizadas. <span class="required-notice">* Campos obrigatórios</span></p>
-
-
                 <form method="post" enctype="multipart/form-data" class="profile-form">
                     {% csrf_token %}
-
                     {% if request.user.user_type == 'empresa' %}
-                    
                     <fieldset class="form-section">
                         <legend>Dados de Usuário</legend>
                         <div class="form-group readonly-group">
@@ -74,7 +66,6 @@
                             <input type="text" value="************" readonly>
                         </div>
                     </fieldset>
-
                     <fieldset class="form-section">
                         <legend>Dados Empresariais</legend>
                         <div class="form-group">{{ form.razao_social.label_tag }}{{ form.razao_social }}{{ form.razao_social.errors }}</div>
@@ -82,7 +73,6 @@
                         <div class="form-group">{{ form.cnpj.label_tag }}{{ form.cnpj }}{{ form.cnpj.errors }}</div>
                         <div class="form-group">{{ form.inscricao_estadual.label_tag }}{{ form.inscricao_estadual }}{{ form.inscricao_estadual.errors }}</div>
                     </fieldset>
-
                     <fieldset class="form-section">
                         <legend>Endereço Principal</legend>
                         <div class="form-group">{{ form.cep.label_tag }}{{ form.cep }}{{ form.cep.errors }}</div>
@@ -93,19 +83,16 @@
                         <div class="form-group">{{ form.cidade.label_tag }}{{ form.cidade }}{{ form.cidade.errors }}</div>
                         <div class="form-group">{{ form.uf.label_tag }}{{ form.uf }}{{ form.uf.errors }}</div>
                     </fieldset>
-                    
                     <fieldset class="form-section">
                         <legend>Contato Institucional</legend>
                         <div class="form-group">{{ form.telefone_institucional.label_tag }}{{ form.telefone_institucional }}{{ form.telefone_institucional.errors }}</div>
                         <div class="form-group">{{ form.email_institucional.label_tag }}{{ form.email_institucional }}{{ form.email_institucional.errors }}</div>
                     </fieldset>
-                    
                     <fieldset class="form-section">
                         <legend>Dados da Área de Atuação</legend>
                         <div class="form-group">{{ form.cnae_principal.label_tag }}{{ form.cnae_principal }}{{ form.cnae_principal.errors }}</div>
                         <div class="form-group">{{ form.cnaes_secundarios.label_tag }}{{ form.cnaes_secundarios }}{{ form.cnaes_secundarios.errors }}</div>
                     </fieldset>
-
                     <fieldset class="form-section">
                         <legend>Dados do Responsável Legal/Delegado</legend>
                         <div class="form-group">{{ form.responsavel_nome.label_tag }}{{ form.responsavel_nome }}{{ form.responsavel_nome.errors }}</div>
@@ -113,20 +100,17 @@
                         <div class="form-group">{{ form.responsavel_telefone.label_tag }}{{ form.responsavel_telefone }}{{ form.responsavel_telefone.errors }}</div>
                         <div class="form-group">{{ form.responsavel_cargo.label_tag }}{{ form.responsavel_cargo }}{{ form.responsavel_cargo.errors }}</div>
                     </fieldset>
-
                     <fieldset class="form-section">
                         <legend>Dados Complementares</legend>
                         <div class="form-group">{{ form.logotipo.label_tag }}{{ form.logotipo }}{{ form.logotipo.errors }}</div>
                         <div class="form-group">{{ form.website.label_tag }}{{ form.website }}{{ form.website.errors }}</div>
                         <div class="form-group">{{ form.redes_sociais.label_tag }}{{ form.redes_sociais }}{{ form.redes_sociais.errors }}</div>
                     </fieldset>
-
                     <fieldset class="form-section">
                         <legend>Comprovantes</legend>
                         <div class="form-group">{{ form.comprovante_dados.label_tag }}{{ form.comprovante_dados }}{{ form.comprovante_dados.errors }}</div>
                         <div class="form-group">{{ form.comprovante_responsavel.label_tag }}{{ form.comprovante_responsavel }}{{ form.comprovante_responsavel.errors }}</div>
                     </fieldset>
-                    
                     <div class="form-group declaration-group">
                         {{ form.declaracao.errors }}
                         <div class="checkbox-wrapper">
@@ -134,19 +118,14 @@
                             {{ form.declaracao.label_tag }}
                         </div>
                     </div>
-                    
                     <div class="submit-wrapper">
                         <button type="submit" class="grid-item dark">Salvar Alterações</button>
                     </div>
-
                     {% elif request.user.user_type == 'empreendedor' %}
-                    
                     {{ form.as_p }}
-
                     <div class="submit-wrapper">
                         <button type="submit" class="grid-item dark">Salvar Alterações</button>
                     </div>
-
                     {% endif %}
                 </form>
             </div>

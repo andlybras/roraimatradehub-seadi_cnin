@@ -1,6 +1,3 @@
-/* --- Estilos para o Módulo de Inteligência de Mercado --- */
-
-/* Grade de Cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -14,13 +11,13 @@
     background-color: rgba(255, 255, 255, 0.05);
     border: 0.5px solid #E4F8FF;
     border-radius: 30px;
-    overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
+    overflow: hidden;
     transition: all 0.3s ease;
-    display: flex; /* Permite controlar o layout interno */
-    flex-direction: column; /* Coloca imagem e título um abaixo do outro */
-    justify-content: flex-end; /* Alinha o conteúdo à parte inferior */
-    height: 300px; /* Define uma altura fixa para os cards */
-    position: relative; /* Essencial para posicionar a imagem */
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-end; 
+    height: 300px;
+    position: relative;
 }
 
 .card-link:hover {
@@ -30,23 +27,23 @@
 }
 
 .card-image-wrapper {
-    position: absolute; /* Posição absoluta dentro do card-link */
-    bottom: 0; /* Ancorar na parte inferior */
-    left: 0; /* Alinhar à esquerda */
-    width: 100%; /* Ocupar toda a largura */
-    height: 100%; /* Ocupar toda a altura (para cobrir tudo) */
-    z-index: 1; /* Garante que a imagem fique atrás do texto se houver sobreposição */
-    display: flex; /* Para centralizar a imagem verticalmente, se necessário, mas object-fit fará o trabalho */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-end; /* Alinha a imagem ao fundo do wrapper, essencial para o efeito */
-    overflow: hidden; /* Corta partes da imagem que possam sair do wrapper */
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+    display: flex; 
+    justify-content: center;
+    align-items: flex-end; 
+    overflow: hidden; 
 }
 
 .card-image-wrapper img {
-    width: 100%; /* Ocupar toda a largura do wrapper */
-    height: auto; /* Altura automática para manter proporção */
-    object-fit: cover; /* Ajusta a imagem para cobrir a área mantendo proporção */
-    min-height: 100%; /* Garante que a imagem seja pelo menos tão alta quanto o wrapper */
+    width: 100%; 
+    height: auto;
+    object-fit: cover; 
+    min-height: 100%; 
 }
 
 .card-title-wrapper {
@@ -54,13 +51,13 @@
     text-align: center;
     font-weight: 700;
     font-size: 1.1rem;
-    position: relative; /* Para que o título fique acima da imagem */
-    z-index: 2; /* Coloca o título acima da imagem */
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%); /* Gradiente para destacar o texto */
-    padding-top: 50px; /* Mais padding no topo para o gradiente */
-    flex-grow: 0; /* Não queremos que ele ocupe espaço extra, só o necessário */
+    position: relative; 
+    z-index: 2; 
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    padding-top: 50px;
+    flex-grow: 0; 
     width: 100%;
-    box-sizing: border-box; /* Inclui padding na largura total */
+    box-sizing: border-box; 
 }
 
 .card-detail-header {
@@ -91,46 +88,38 @@
     margin: 30px 0;
 }
 
-/* --- Estilo para o Card de Conteúdo Detalhado --- */
-
 .detail-card-wrapper {
-    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com leve transparência */
-    color: #144A5D; /* Cor do texto escura para contraste */
-    border-radius: 30px; /* Bordas arredondadas */
-    padding: 30px 40px; /* Espaçamento interno */
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15); /* Sombra suave para destacar */
-    text-align: left; /* Alinha o texto à esquerda */
+    background-color: rgba(255, 255, 255, 0.95); 
+    color: #144A5D; 
+    border-radius: 30px;
+    padding: 30px 40px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15); 
+    text-align: left; 
 }
 
-/* Ajusta a cor dos títulos dentro do novo card */
 .detail-card-wrapper h2 {
     color: #0d2f3b;
 }
 
-/* Ajusta a cor do subtítulo */
 .detail-card-wrapper .subtitulo {
     color: #3a86ff;
 }
 
-/* Ajusta a cor da linha separadora */
 .detail-card-wrapper hr {
     background-color: rgba(20, 74, 93, 0.2);
 }
 
-/* Ajusta o botão "Voltar" para ter contraste com o fundo branco */
 .detail-card-wrapper #back-to-list-button {
     background-color: rgba(20, 74, 93, 0.1);
     color: #144A5D;
     font-weight: 700;
-    width: auto; /* Faz o botão ter a largura do seu conteúdo */
-    display: inline-block; /* Garante o comportamento correto do dimensionamento */
+    width: auto;
+    display: inline-block;
 }
 
 .detail-card-wrapper #back-to-list-button:hover {
     background-color: rgba(20, 74, 93, 0.2);
 }
-
-/* --- Estilo para o Botão Voltar na Tela de Listagem (Versão Corrigida) --- */
 
 #back-to-initial-button {
     background-color: rgba(255, 255, 255, 0.95);
@@ -141,33 +130,27 @@
     width: auto;
     display: inline-block;
     transition: background-color 0.3s ease;
-    border: none; /* Remove a borda anterior para ficar igual ao outro */
+    border: none; 
 }
 
 #back-to-initial-button:hover {
     background-color: rgba(255, 255, 255, 0.603);
 }
 
-/* --- Ajuste Fino de Espaçamento Vertical --- */
-
 #intelligence-module-container .sidebar-column {
-    justify-content: flex-start; /* Altera o alinhamento para o início */
-    gap: 20px; /* Garante um vão fixo de 20px entre os botões */
+    justify-content: flex-start; 
+    gap: 20px;
 }
 
-/* --- Ajuste para igualar a altura do painel principal com os botões --- */
-
 #intelligence-module-container .page-layout .main-column {
-    display: flex; /* Transforma a coluna em um container flex */
-    flex-direction: column; /* Garante que os itens internos se organizem verticalmente */
+    display: flex; 
+    flex-direction: column;
 }
 
 #intelligence-module-container .page-layout .content-panel {
-    min-height: auto; /* Remove a altura mínima fixa que estava causando a diferença */
-    flex-grow: 1; /* Faz o painel crescer para ocupar todo o espaço vertical disponível na coluna */
+    min-height: auto;
+    flex-grow: 1;
 }
-
-/* --- Estilos para a Página do Glossário --- */
 
 .glossario-container {
     margin-top: 30px;
@@ -207,24 +190,19 @@
     margin-left: 0;
 }
 
-/* --- Estilos Finais e Definitivos para o Glossário --- */
-
-/* Força a seção de cada letra a ocupar 100% da largura disponível */
 .letra-secao {
     width: 100%;
 }
 
-/* O card do termo, que agora vai herdar a largura do pai */
 .termo-card {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 25px 30px;
     margin-bottom: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Boa prática para o padding não interferir na largura */
+    box-sizing: border-box;
 }
 
-/* Mantém as cores do texto para o fundo branco */
 .termo-card dt {
     color: #0d2f3b;
 }

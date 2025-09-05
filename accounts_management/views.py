@@ -38,7 +38,6 @@ class RegisterView(CreateView):
         )
         return redirect(self.success_url)
 
-
 class CustomLoginView(auth_views.LoginView):
     def form_valid(self, form):
         user = form.get_user()
@@ -48,14 +47,12 @@ class CustomLoginView(auth_views.LoginView):
             form.add_error(None, "Sua conta ainda não foi ativada. Por favor, verifique seu e-mail.")
             return self.form_invalid(form)
 
-
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = CustomUser.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
         user = None
-
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.is_email_verified = True
@@ -68,7 +65,6 @@ def activate(request, uidb64, token):
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
-
 def resend_activation_email(request):
     if request.method == 'POST':
         form = ResendActivationEmailForm(request.POST)
@@ -78,7 +74,6 @@ def resend_activation_email(request):
                 user = CustomUser.objects.get(email=email)
             except CustomUser.DoesNotExist:
                 user = None
-
             if user:
                 if user.is_active:
                     return redirect('account_already_active')
@@ -91,11 +86,9 @@ def resend_activation_email(request):
                         'token': account_activation_token.make_token(user),
                     })
                     send_mail(subject, message, None, [user.email])
-            
             return redirect('account_activation_sent')
     else:
         form = ResendActivationEmailForm()
-
     context = {
         'form': form,
     }

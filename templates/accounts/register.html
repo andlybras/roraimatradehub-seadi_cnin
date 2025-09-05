@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Crie seu Perfil | Roraima Trade Hub{% endblock %}
-
 {% block content %}
 <div class="registration-container">
     <div class="registration-panel">
         <h1 class="page-title" style="margin-bottom: 30px;">Crie seu Perfil Empresarial</h1>
-        
         <form method="post" id="registrationForm">
             {% csrf_token %}
-
             {% if form.non_field_errors %}
                 <div class="form-errors" style="color: #ff9999; margin-bottom: 15px; text-align: left;">
                     {% for error in form.non_field_errors %}
@@ -17,7 +14,6 @@
                     {% endfor %}
                 </div>
             {% endif %}
-
             <div class="form-group">
                 <label>{{ form.user_type.label }}</label>
                 <div class="user-type-selector">
@@ -30,13 +26,11 @@
                 </div>
                 <div class="backend-error">{{ form.user_type.errors }}</div>
             </div>
-
             <div class="form-group">
                 <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                 {{ form.username }}
                 <div class="backend-error">{{ form.username.errors }}</div>
             </div>
-
             <div class="form-group">
                 <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                 {{ form.email }}
@@ -44,14 +38,12 @@
                 <div class="validation-message" id="email-error"></div>
                 <div class="backend-error">{{ form.email.errors }}</div>
             </div>
-
             <div class="form-group">
                 <label for="{{ form.email2.id_for_label }}">{{ form.email2.label }}</label>
                 {{ form.email2 }}
                 <div class="validation-message" id="email2-error"></div>
                 <div class="backend-error">{{ form.email2.errors }}</div>
             </div>
-
             <div class="form-group">
                 <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
                 {{ form.password1 }}
@@ -59,17 +51,14 @@
                     <div class="validation-rules"></div>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
                 {{ form.password2 }}
                 <div class="validation-message" id="password2-error"></div>
             </div>
-
             <div class="form-group" style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 20px;">
                 {{ form.captcha }}
             </div>
-            
             <button type="submit" id="submitButton" class="grid-item" disabled>
                 Criar meu Perfil
             </button>

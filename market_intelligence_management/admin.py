@@ -22,8 +22,6 @@ class ConteudoInteligenciaAdmin(admin.ModelAdmin):
 class GlossarioTermoAdmin(admin.ModelAdmin):
     list_display = ('termo',)
     search_fields = ('termo', 'explicacao')
-    
-    # Aplica o editor de texto rico ao campo 'explicacao'
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 20})},
     }
