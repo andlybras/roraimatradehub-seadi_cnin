@@ -7,7 +7,7 @@ class BaseProfileForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             if field.required:
                 field.label = f'{field.label} *'
-class EmpresaProfileForm(BaseProfileForm): # Herda da nossa classe base
+class EmpresaProfileForm(BaseProfileForm):
     declaracao = forms.BooleanField(
         required=True,
         label="Declaro que todas as informações submetidas são verídicas, sob as penas da lei."
@@ -16,7 +16,6 @@ class EmpresaProfileForm(BaseProfileForm): # Herda da nossa classe base
     class Meta:
         model = EmpresaProfile
         exclude = ['user']
-        # Definindo os labels explicitamente para evitar o '*' duplicado no campo de declaração
         labels = {
             'cnae_principal': 'CNAE Principal',
             'logotipo': 'Logotipo',

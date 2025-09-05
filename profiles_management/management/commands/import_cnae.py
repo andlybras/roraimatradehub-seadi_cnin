@@ -13,30 +13,20 @@ class Command(BaseCommand):
 
         try:
             with open(file_path, 'r', encoding='latin-1') as csv_file:
-                # Usando csv.reader para ler as linhas como listas, ignorando os cabeçalhos
                 reader = csv.reader(csv_file, delimiter=';')
-                
-                # Pula a linha do cabeçalho
                 next(reader, None)  
-                
                 cnaes_to_create = []
                 for row in reader:
-                    # Tenta ler os dados pela posição da coluna.
-                    # row[4] é a 5ª coluna (código), row[5] é a 6ª coluna (descrição).
                     try:
                         codigo_cnae = row[4]
                         descricao_cnae = row[5]
-
                         if codigo_cnae and descricao_cnae:
                             cnaes_to_create.append(
                                 CNAE(codigo=codigo_cnae.strip(), descricao=descricao_cnae.strip())
                             )
                     except IndexError:
-                        # Ignora linhas que não tenham colunas suficientes (linhas em branco, etc.)
                         pass
-
                 CNAE.objects.bulk_create(cnaes_to_create)
-                
                 if len(cnaes_to_create) > 0:
                     self.stdout.write(self.style.SUCCESS(f'{len(cnaes_to_create)} códigos CNAE importados com sucesso!'))
                 else:

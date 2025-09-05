@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- LÓGICA DO HEADER SCROLLED ---
     const header = document.querySelector('.main-header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA DO CARROSSEL DE PARCEIROS (SCROLLER) ---
     const scrollers = document.querySelectorAll(".scroller");
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         scrollers.forEach((scroller) => {
@@ -19,17 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Função addAnimation RESTAURADA da versão 6.0
     function addAnimation(scroller) {
         const scrollerInner = scroller.querySelector(".scroller-inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
-        // Trava de segurança para evitar erros se não houver logos.
         if (scrollerContent.length === 0) {
             return;
         }
 
-        // Etapa 1: Garante que o conteúdo seja largo o suficiente para preencher o scroller
         let contentWidth = 0;
         scrollerContent.forEach(item => {
             const style = window.getComputedStyle(item);
@@ -48,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Etapa 2: Duplica todo o conteúdo (agora já preenchido) para o loop da animação
         const finalContent = Array.from(scrollerInner.children);
         finalContent.forEach(item => {
             const duplicatedItem = item.cloneNode(true);
@@ -59,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         scroller.setAttribute("data-animated", "true");
     }
 
-    // --- LÓGICA DO SLIDESHOW HERO ---
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
         let currentHeroSlide = 0;
@@ -71,14 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (heroSlides[currentHeroSlide]) {
                 heroSlides[currentHeroSlide].classList.add('is-active');
             }
-        }, 10000); // Troca de slide a cada 10 segundos
+        }, 10000);
     }
 
-    // -------------------------------------------------------------------
-    // --- NOVO CÓDIGO PARA FORMULÁRIOS (COMPLETO E ATUALIZADO) ---
-    // -------------------------------------------------------------------
-
-    // Função global para o callback do reCAPTCHA
     window.recaptchaCallback = function() {
         const registrationForm = document.getElementById('registrationForm');
         if (registrationForm) {
@@ -86,17 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Função para exibir mensagens de aviso temporárias
     const showTemporaryMessage = (messageElement) => {
         if (messageElement) {
             messageElement.classList.add('show');
             setTimeout(() => {
                 messageElement.classList.remove('show');
-            }, 3000); // A mensagem some após 3 segundos
+            }, 3000);
         }
     };
 
-    // --- Lógica do Formulário de Registro ---
     const registrationForm = document.getElementById('registrationForm');
     if (registrationForm) {
         const userTypeRadios = document.querySelectorAll('input[name="user_type"]');
@@ -224,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         userTypeRadios.forEach(radio => radio.addEventListener('change', checkRegistrationFormValidity));
         
-        // Adiciona um observador para o reCAPTCHA, já que o callback pode ser difícil de implementar
         const recaptchaResponseEl = document.getElementById('g-recaptcha-response');
         if (recaptchaResponseEl) {
             const observer = new MutationObserver(() => {
@@ -239,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
         checkRegistrationFormValidity();
     }
 
-    // --- Lógica do Formulário de Login ---
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         const usernameInput = document.getElementById('id_username');
@@ -274,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// --- CÓDIGO PARA A PÁGINA DE GERENCIAMENTO DE PERFIL ---
 document.addEventListener('DOMContentLoaded', function() {
     const profileForm = document.querySelector('.profile-form');
     if (!profileForm) {

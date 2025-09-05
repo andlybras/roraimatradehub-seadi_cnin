@@ -40,8 +40,7 @@ body::before {
     padding: 15px 25px;
     border: 0.5px solid #E4F8FF;
     border-radius: 50px;
-    /* --- MODIFICAR AQUI (Item 6) --- */
-    margin-bottom: 20px; /* Era 10px */
+    margin-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -168,11 +167,11 @@ body::before {
 }
 
 .grid-item img {
-    height: 50px; /* Define uma altura fixa para todos os ícones */
-    width: auto;  /* Largura se ajusta para manter a proporção */
+    height: 50px;
+    width: auto;
 }
 .grid-item span {
-    min-height: 2.2rem; /* Garante que títulos de 1 ou 2 linhas ocupem o mesmo espaço */
+    min-height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -749,7 +748,6 @@ body::before {
     max-width: 300px;
 }
 
-/* Estilos para a mensagem de aviso dos formulários */
 .form-validation-message {
     color: #ff9999;
     font-size: 0.9rem;
@@ -763,12 +761,9 @@ body::before {
 
 .form-validation-message.show {
     opacity: 1;
-    height: auto; /* Altura automática baseada no conteúdo */
+    height: auto;
     margin-top: 15px;
 }
-/* =============================================== */
-/* --- ESTILOS DO DASHBOARD EMPRESARIAL --- */
-/* =============================================== */
 
 .dashboard-menu {
     width: 100%;
@@ -824,12 +819,11 @@ body::before {
     margin-top: 0;
 }
 
-/* --- ESTILO DOS ÍCONES DO DASHBOARD (CSS MASK) --- */
 .menu-icon {
     display: inline-block;
     width: 28px;
     height: 28px;
-    background-color: #E4F8FF; /* Cor padrão (branca) */
+    background-color: #E4F8FF;
     transition: background-color 0.3s ease;
     -webkit-mask-size: contain;
     mask-size: contain;
@@ -848,11 +842,9 @@ body::before {
 .icon-sair { -webkit-mask-image: url('/static/images/icone-sair.svg'); mask-image: url('/static/images/icone-sair.svg'); }
 
 .dashboard-menu-item.is-active .menu-icon {
-    /* Muda a cor do fundo do estêncil para o azul escuro exato */
     background-color: #144A5D;
 }
 
-/* --- ESTILO DAS COLUNAS DO LAYOUT DA PÁGINA --- */
 .main-column {
     display: flex; 
     flex-direction: column; 
@@ -861,10 +853,6 @@ body::before {
 .main-column .content-panel {
     flex-grow: 1; 
 }
-
-/* =============================================== */
-/* --- ESTILOS DO FORMULÁRIO DE PERFIL --- */
-/* =============================================== */
 
 .profile-form {
     margin-top: 30px;
@@ -919,7 +907,6 @@ body::before {
     cursor: not-allowed;
 }
 
-/* Item 1: Fundo branco para campos preenchidos */
 .profile-form .form-group input.filled,
 .profile-form .form-group textarea.filled,
 .profile-form .form-group .ts-wrapper.filled .ts-control {
@@ -928,7 +915,6 @@ body::before {
     border-color: #144A5D !important;
 }
 
-/* Item 6: Largura do seletor CNAE */
 .ts-control {
     border-radius: 25px !important;
     border: 1px solid #E4F8FF !important;
@@ -948,7 +934,6 @@ body::before {
     color: #144A5D !important;
 }
 
-/* Item 8: Botão centralizado e campo de declaração */
 .submit-wrapper {
     display: flex;
     justify-content: center;
@@ -968,20 +953,13 @@ body::before {
     accent-color: #144A5D;
 }
 
-
-/* =============================================== */
-/* --- AJUSTES FINAIS DO FORMULÁRIO DE PERFIL --- */
-/* =============================================== */
-
-/* Item 1: Largura do formulário */
 .dashboard-content {
-    padding: 40px; /* Mantém o padding interno */
+    padding: 40px;
 }
 
-/* Item 2: Fundo branco para campos selecionados E preenchidos */
 .profile-form .form-group input:focus,
 .profile-form .form-group textarea:focus,
-.profile-form .form-group .ts-wrapper.focus .ts-control, /* Tom-Select focado */
+.profile-form .form-group .ts-wrapper.focus .ts-control,
 .profile-form .form-group input.filled,
 .profile-form .form-group textarea.filled,
 .profile-form .form-group .ts-wrapper.filled .ts-control {
@@ -990,14 +968,13 @@ body::before {
     border-color: #144A5D !important;
 }
 
-/* Item 6 e 7: Estilos para o Tom-Select (CNAE) */
 .ts-control {
     border-radius: 25px !important;
     border: 1px solid #E4F8FF !important;
     background-color: rgba(20, 74, 93, 0.5) !important;
     padding: 10px 20px !important;
 }
-.ts-control .ts-input { /* Cor do texto ao digitar */
+.ts-control .ts-input {
     color: #E4F8FF;
 }
 .ts-dropdown {
@@ -1011,22 +988,20 @@ body::before {
     background-color: rgba(228, 248, 255, 0.9) !important;
     color: #144A5D !important;
 }
-/* Empilhar itens no CNAE secundário */
+
 .ts-control > .item {
-    background-color: #144A5D; /* Cor de fundo azul escuro */
-    color: #E4F8FF; /* Cor do texto branca */
+    background-color: #144A5D;
+    color: #E4F8FF;
     border: 1px solid #E4F8FF;
     border-radius: 15px;
     padding: 5px 10px;
     margin: 3px;
-    display: inline-block; /* Mantém lado a lado, mas permite quebra de linha */
+    display: inline-block;
 }
 .ts-wrapper.multi .ts-control {
-    padding: 5px !important; /* Ajuste no padding para o campo multi-select */
+    padding: 5px !important;
 }
 
-
-/* Item 8 e 9: Estilos para o botão e declaração */
 .submit-wrapper {
     display: flex;
     justify-content: center;
@@ -1050,7 +1025,7 @@ body::before {
     color: #ffc4c4;
 }
 .profile-form label {
-    color: #E4F8FF; /* Garante que todos os labels fiquem brancos */
+    color: #E4F8FF;
 }
 label.required::after {
     content: " *";

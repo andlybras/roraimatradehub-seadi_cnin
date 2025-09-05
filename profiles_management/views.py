@@ -7,10 +7,6 @@ from .models import EmpresaProfile, EmpreendedorProfile
 
 @login_required
 def manage_profile_view(request):
-    """
-    View para criar e editar o perfil do usuário logado.
-    Ela identifica o tipo de usuário e apresenta o formulário correspondente.
-    """
     user = request.user
     
     if user.user_type == 'empresa':
@@ -23,13 +19,10 @@ def manage_profile_view(request):
         messages.error(request, 'Tipo de perfil de usuário inválido.')
         return redirect('dashboard')
 
-    # --- CORREÇÃO APLICADA AQUI ---
-    # Trocamos get_object_or_404 por uma busca padrão com try/except.
-    # Isso permite que a view continue se o perfil não for encontrado.
     try:
         profile_instance = ProfileModel.objects.get(user=user)
     except ProfileModel.DoesNotExist:
-        profile_instance = None # Para novos usuários, o perfil será None
+        profile_instance = None
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile_instance)
