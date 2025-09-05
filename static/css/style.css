@@ -256,6 +256,7 @@ body::before {
     border-radius: 50px;
     display: inline-block;
     margin-bottom: 20px;
+    align-self: flex-start;
 }
 
 #loginButton {
@@ -867,7 +868,8 @@ body::before {
 
 .main-column {
     display: flex; 
-    flex-direction: column; 
+    flex-direction: column;
+    width: 100%;
 }
 
 .main-column .content-panel {
