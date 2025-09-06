@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Glossário de Termos | Roraima Trade Hub{% endblock %}
+{% block content %}
+<div class="page-layout">
+    <div class="main-column">
+        <h1 class="page-title">Glossário de Termos</h1>
+        <div class="content-panel">
+            <div class="dashboard-content">
+                <div class="card-detail-header">
+                     <a href="{% url 'market_intelligence_management:dashboard' %}" class="dashboard-menu-item" id="back-to-initial-button">
+                        &larr; Voltar
+                    </a>
+                </div>
+                <div class="glossario-container">
+                    {% for letra, lista_de_termos in termos_agrupados.items %}
+                        <div class="letra-secao">
+                            <h2 class="letra-indice">{{ letra }}</h2>
+                            
+                            <div class="termos-lista">
+                                {% for item in lista_de_termos %}
+                                    <div class="termo-card">
+                                        <dt>{{ item.termo }}</dt>
+                                        <dd>{{ item.explicacao|safe }}</dd>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -29,8 +29,11 @@ INSTALLED_APPS = [
     'core',
     'site_setup',
     'accounts_management',
+    'profiles_management',
+    'market_intelligence_management',
     'django_recaptcha',
     'storages',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'site_setup.context_processors.global_context',
             ],
         },
     },
